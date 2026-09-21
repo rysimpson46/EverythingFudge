@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Everything Fudge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --void:    #0c0906;
+      --pit:     #160e07;
+      --bark:    #2c1a0c;
+      --leather: #4a2e14;
+      --honey:   #b8913a;
+      --sand:    #d4b882;
+      --parch:   #ede0c8;
+      --linen:   #f7f0e6;
+      --display: 'Playfair Display', Georgia, serif;
+      --text:    'Libre Baskerville', Georgia, serif;
+      --ui:      'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--text);
+      background: var(--void);
+      color: var(--parch);
+      font-size: 17px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ════════════════════════════════ NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 4rem;
+      mix-blend-mode: normal;
+      transition: padding 0.5s cubic-bezier(.22,1,.36,1), background 0.5s;
+    }
+    nav.solid {
+      background: rgba(12,9,6,0.97);
+      padding: 1.2rem 4rem;
+      border-bottom: 1px solid rgba(184,145,58,0.12);
+    }
+    .nav-mark {
+      font-family: var(--display);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--sand);
+      text-decoration: none;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 3rem;
+    }
+    .nav-links a {
+      font-family: var(--ui);
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: rgba(212,184,130,0.65);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--sand); }
+    .nav-order {
+      font-family: var(--ui);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--void);
+      background: var(--honey);
+      padding: 0.55rem 1.6rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-order:hover { background: var(--sand); }
+
+    /* ════════════════════════════════ PAGE SYSTEM */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ════════════════════════════════ HOME: HERO */
+    .hero {
+      height: 100vh;
+      min-height: 640px;
+      display: grid;
+      grid-template-columns: 1fr 45%;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 5rem 7rem 4rem;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-right {
+      background: var(--bark);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right-inner {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 35% 55%, #5c2e0e 0%, #2c1a0c 45%, #160e07 100%);
+    }
+    /* Subtle grain texture via SVG filter */
+    .hero-right-inner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      mix-blend-mode: overlay;
+    }
+    /* Chocolate slab illustration */
+    .choc-slab {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -48%) rotate(-6deg);
+      width: 72%;
+    }
+
+    .hero-year {
+      font-family: var(--display);
+      font-size: 0.75rem;
+      font-style: italic;
+      color: rgba(184,145,58,0.55);
+      margin-bottom: 3.5rem;
+    }
+    .hero-h1 {
+      font-family: var(--display);
+      font-size: clamp(3.8rem, 7vw, 6.2rem);
+      font-weight: 400;
+      line-height: 0.95;
+      color: var(--linen);
+      margin-bottom: 2.5rem;
+    }
+    .hero-h1 span {
+      display: block;
+      font-style: italic;
+      color: var(--sand);
+      font-size: 0.85em;
+      line-height: 1.1;
+    }
+    .hero-p {
+      font-family: var(--text);
+      font-size: 1rem;
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(212,184,130,0.7);
+      max-width: 340px;
+      line-height: 1.7;
+      margin-bottom: 3.5rem;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .btn-fill {
+      font-family: var(--ui);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--void);
+      background: var(--honey);
+      padding: 0.85rem 2.2rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+    .btn-fill:hover { background: var(--sand); }
+    .btn-text {
+      font-family: var(--text);
+      font-size: 0.9rem;
+      font-style: italic;
+      color: rgba(212,184,130,0.55);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(184,145,58,0.25);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-text:hover { color: var(--sand); border-color: var(--honey); }
+
+    /* ════════════════════════════════ HOME: FLAVOR BAND */
+    .flavor-band {
+      background: var(--pit);
+      padding: 0;
+      border-top: 1px solid rgba(184,145,58,0.1);
+      border-bottom: 1px solid rgba(184,145,58,0.1);
+      overflow: hidden;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+    }
+    .flavor-track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+      animation: ticker 38s linear infinite;
+    }
+    .flavor-track span {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 0.85rem;
+      color: rgba(184,145,58,0.45);
+      padding: 0 2.5rem;
+    }
+    .flavor-track span::after {
+      content: '·';
+      margin-left: 2.5rem;
+      color: rgba(184,145,58,0.2);
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ════════════════════════════════ HOME: STAGGERED PRODUCT FEATURE */
+    .products-stagger {
+      padding: 9rem 4rem;
+    }
+    .stagger-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 7rem;
+      gap: 4rem;
+      align-items: end;
+    }
+    .stagger-intro h2 {
+      font-family: var(--display);
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--linen);
+    }
+    .stagger-intro h2 em { font-style: italic; color: var(--sand); }
+    .stagger-intro p {
+      font-family: var(--text);
+      font-size: 0.95rem;
+      color: rgba(212,184,130,0.6);
+      line-height: 1.8;
+      align-self: end;
+    }
+
+    .product-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid rgba(184,145,58,0.12);
+      min-height: 380px;
+      cursor: pointer;
+      transition: background 0.4s;
+    }
+    .product-row:hover { background: rgba(44,26,12,0.4); }
+    .product-row:last-child { border-bottom: 1px solid rgba(184,145,58,0.12); }
+    .product-row.reverse { direction: rtl; }
+    .product-row.reverse > * { direction: ltr; }
+
+    .product-visual {
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+    }
+    .product-meta {
+      padding: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .product-num {
+      font-family: var(--display);
+      font-size: 4rem;
+      font-weight: 700;
+      color: rgba(184,145,58,0.07);
+      line-height: 1;
+      margin-bottom: auto;
+    }
+    .product-info { margin-top: auto; }
+    .product-name {
+      font-family: var(--display);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--linen);
+      margin-bottom: 0.75rem;
+      line-height: 1.1;
+    }
+    .product-name em { font-style: italic; }
+    .product-flavor-note {
+      font-family: var(--text);
+      font-size: 0.88rem;
+      font-style: italic;
+      color: rgba(212,184,130,0.55);
+      line-height: 1.65;
+      max-width: 320px;
+      margin-bottom: 2rem;
+    }
+    .product-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+    }
+    .product-price {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--honey);
+    }
+    .product-unit {
+      font-family: var(--ui);
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: rgba(212,184,130,0.4);
+      letter-spacing: 0.04em;
+    }
+
+    /* ════════════════════════════════ HOME: CRAFT STATEMENT */
+    .craft-statement {
+      padding: 10rem 4rem;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 8rem;
+      align-items: center;
+      border-top: 1px solid rgba(184,145,58,0.08);
+    }
+    .craft-text h2 {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.15;
+      color: var(--linen);
+      margin-bottom: 2.5rem;
+    }
+    .craft-text p {
+      font-size: 0.95rem;
+      color: rgba(212,184,130,0.6);
+      line-height: 1.85;
+      max-width: 460px;
+    }
+    .craft-visual {
+      aspect-ratio: 3/4;
+      background: var(--bark);
+      position: relative;
+      overflow: hidden;
+    }
+    .craft-visual-fill {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 40% 35%, #6b3a18 0%, #2c1a0c 60%, #160e07 100%);
+    }
+
+    /* ════════════════════════════════ SHOP PAGE */
+    .shop-hero {
+      padding: 11rem 4rem 5rem;
+      border-bottom: 1px solid rgba(184,145,58,0.1);
+    }
+    .shop-hero h1 {
+      font-family: var(--display);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 400;
+      color: var(--linen);
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+    .shop-hero h1 em { font-style: italic; color: var(--sand); }
+    .shop-hero p {
+      font-family: var(--text);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: rgba(212,184,130,0.5);
+    }
+
+    .shop-body {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 0;
+      align-items: start;
+      min-height: 100vh;
+    }
+    .shop-form {
+      padding: 4rem;
+      border-right: 1px solid rgba(184,145,58,0.1);
+    }
+    .shop-sidebar {
+      padding: 4rem 3rem;
+      position: sticky;
+      top: 5rem;
+    }
+
+    .form-section-title {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--linen);
+      margin-bottom: 1.75rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(184,145,58,0.12);
+    }
+
+    .field {
+      margin-bottom: 1.6rem;
+    }
+    .field label {
+      display: block;
+      font-family: var(--ui);
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: rgba(212,184,130,0.5);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(184,145,58,0.18);
+      color: var(--parch);
+      font-family: var(--text);
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: rgba(212,184,130,0.2); }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus { border-color: var(--honey); }
+    .field textarea { resize: vertical; min-height: 100px; }
+    .field select option { background: var(--pit); }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* Flavor picker */
+    .flavor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: rgba(184,145,58,0.08);
+      margin-top: 0.5rem;
+    }
+    .fpick {
+      background: var(--pit);
+      padding: 0.9rem 1rem;
+      cursor: pointer;
+      transition: background 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .fpick:hover { background: var(--bark); }
+    .fpick.on { background: rgba(184,145,58,0.12); }
+    .fpick-name {
+      font-family: var(--text);
+      font-size: 0.85rem;
+      font-style: italic;
+      color: rgba(212,184,130,0.7);
+      transition: color 0.15s;
+    }
+    .fpick.on .fpick-name { color: var(--sand); }
+    .fpick-price {
+      font-family: var(--display);
+      font-size: 0.8rem;
+      color: rgba(184,145,58,0.35);
+      transition: color 0.15s;
+    }
+    .fpick.on .fpick-price { color: var(--honey); }
+
+    /* Qty */
+    .qty-wrap {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid rgba(184,145,58,0.18);
+      width: fit-content;
+    }
+    .qty-btn {
+      background: none;
+      border: none;
+      width: 2.8rem;
+      color: var(--honey);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .qty-btn:hover { background: rgba(184,145,58,0.1); }
+    .qty-num {
+      width: 3rem;
+      text-align: center;
+      background: none;
+      border: none;
+      border-left: 1px solid rgba(184,145,58,0.18);
+      border-right: 1px solid rgba(184,145,58,0.18);
+      color: var(--parch);
+      font-family: var(--display);
+      font-size: 1rem;
+      outline: none;
+    }
+
+    /* Sidebar */
+    .sidebar-heading {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--linen);
+      margin-bottom: 2rem;
+    }
+    .side-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .side-item-name {
+      font-family: var(--text);
+      font-style: italic;
+      font-size: 0.85rem;
+      color: rgba(212,184,130,0.6);
+    }
+    .side-item-price {
+      font-family: var(--display);
+      font-size: 0.95rem;
+      color: var(--honey);
+    }
+    .side-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-top: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .side-total-label {
+      font-family: var(--ui);
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: rgba(212,184,130,0.4);
+      letter-spacing: 0.08em;
+    }
+    .side-total-price {
+      font-family: var(--display);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--honey);
+    }
+
+    /* ════════════════════════════════ GALLERY */
+    .gallery-header {
+      padding: 11rem 4rem 4rem;
+    }
+    .gallery-header h1 {
+      font-family: var(--display);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 400;
+      color: var(--linen);
+      line-height: 1.05;
+    }
+    .gallery-header h1 em { font-style: italic; color: var(--sand); }
+    .gallery-header p {
+      font-family: var(--text);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: rgba(212,184,130,0.45);
+      margin-top: 1rem;
+      max-width: 480px;
+    }
+
+    /* Asymmetric masonry feel */
+    .gallery-canvas {
+      padding: 2rem 4rem 8rem;
+      display: grid;
+      grid-template-columns: 2fr 1.2fr 1fr;
+      grid-template-rows: 340px 220px 300px;
+      gap: 3px;
+    }
+    .gc { position: relative; overflow: hidden; background: var(--bark); }
+    .gc-label {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 1.5rem;
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 0.82rem;
+      color: rgba(212,184,130,0.5);
+    }
+    .gc.a { grid-column: 1; grid-row: 1 / 3; }
+    .gc.b { grid-column: 2; grid-row: 1; }
+    .gc.c { grid-column: 3; grid-row: 1; }
+    .gc.d { grid-column: 2 / 4; grid-row: 2; }
+    .gc.e { grid-column: 1; grid-row: 3; }
+    .gc.f { grid-column: 2; grid-row: 3; }
+    .gc.g { grid-column: 3; grid-row: 3; }
+
+    /* ════════════════════════════════ ABOUT */
+    .about-open {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .about-portrait-col {
+      background: var(--bark);
+      position: relative;
+      overflow: hidden;
+      min-height: 600px;
+    }
+    .about-portrait-fill {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 40% 40%, #6b3a18 0%, #2c1a0c 55%, #0c0906 100%);
+    }
+    .about-text-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 5rem;
+    }
+    .about-text-col h1 {
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 4vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--linen);
+      margin-bottom: 2.5rem;
+    }
+    .about-text-col h1 em { font-style: italic; color: var(--sand); }
+    .about-text-col p {
+      font-size: 0.95rem;
+      color: rgba(212,184,130,0.6);
+      line-height: 1.85;
+      max-width: 480px;
+      margin-bottom: 1.5rem;
+    }
+    .about-large-quote {
+      padding: 7rem 4rem;
+      border-top: 1px solid rgba(184,145,58,0.08);
+    }
+    .about-large-quote blockquote {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: clamp(1.9rem, 3.5vw, 3rem);
+      font-weight: 400;
+      color: var(--parch);
+      line-height: 1.25;
+      max-width: 820px;
+      opacity: 0.85;
+    }
+    .about-large-quote cite {
+      display: block;
+      font-family: var(--ui);
+      font-style: normal;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: rgba(184,145,58,0.4);
+      letter-spacing: 0.1em;
+      margin-top: 2rem;
+    }
+
+    /* ════════════════════════════════ CONTACT */
+    .contact-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+    .contact-left {
+      padding: 11rem 4rem 6rem;
+      border-right: 1px solid rgba(184,145,58,0.1);
+    }
+    .contact-left h1 {
+      font-family: var(--display);
+      font-size: clamp(2.8rem, 4.5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.0;
+      color: var(--linen);
+      margin-bottom: 3rem;
+    }
+    .contact-left h1 em { font-style: italic; color: var(--sand); }
+    .contact-right {
+      padding: 11rem 4rem 6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+    .contact-detail {}
+    .contact-detail-label {
+      font-family: var(--ui);
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: rgba(184,145,58,0.4);
+      margin-bottom: 0.5rem;
+    }
+    .contact-detail-value {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--parch);
+    }
+
+    /* ════════════════════════════════ FOOTER */
+    footer {
+      background: var(--pit);
+      border-top: 1px solid rgba(184,145,58,0.1);
+      padding: 2.5rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-mark {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(184,145,58,0.45);
+    }
+    .footer-nav {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+    .footer-nav a {
+      font-family: var(--ui);
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: rgba(212,184,130,0.3);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--sand); }
+    .footer-copy {
+      font-family: var(--ui);
+      font-size: 0.68rem;
+      font-weight: 300;
+      color: rgba(212,184,130,0.2);
+    }
+
+    /* ════════════════════════════════ SHARED SUBMIT BTN */
+    .submit-btn {
+      width: 100%;
+      background: var(--honey);
+      color: var(--void);
+      font-family: var(--ui);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      padding: 1rem 2rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover { background: var(--sand); }
+
+    /* ════════════════════════════════ RESPONSIVE */
+    @media (max-width: 960px) {
+      nav { padding: 1.5rem 1.5rem; }
+      nav.solid { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 0 1.5rem 6rem; }
+      .stagger-intro { grid-template-columns: 1fr; gap: 2rem; }
+      .products-stagger { padding: 5rem 1.5rem; }
+      .product-row { grid-template-columns: 1fr; }
+      .product-row.reverse { direction: ltr; }
+      .product-visual { min-height: 220px; }
+      .product-meta { padding: 2rem 1.5rem; }
+      .craft-statement { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+      .craft-visual { display: none; }
+      .shop-body { grid-template-columns: 1fr; }
+      .shop-form { padding: 3rem 1.5rem; border-right: none; border-bottom: 1px solid rgba(184,145,58,0.1); }
+      .shop-sidebar { padding: 3rem 1.5rem; position: static; }
+      .shop-hero { padding: 9rem 1.5rem 3rem; }
+      .gallery-header { padding: 9rem 1.5rem 3rem; }
+      .gallery-canvas { grid-template-columns: 1fr 1fr; grid-template-rows: auto; padding: 1rem 1.5rem 5rem; }
+      .gc.a { grid-column: auto; grid-row: auto; }
+      .gc.b,.gc.c,.gc.d,.gc.e,.gc.f,.gc.g { grid-column: auto; grid-row: auto; }
+      .about-open { grid-template-columns: 1fr; }
+      .about-portrait-col { min-height: 320px; }
+      .about-text-col { padding: 4rem 1.5rem; }
+      .about-large-quote { padding: 4rem 1.5rem; }
+      .contact-split { grid-template-columns: 1fr; }
+      .contact-left { padding: 9rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid rgba(184,145,58,0.1); }
+      .contact-right { padding: 3rem 1.5rem 5rem; }
+      footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+      .footer-nav { flex-wrap: wrap; justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .flavor-track { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-mark" href="#" onclick="go('home')">Everything Fudge</a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="go('home')">Home</a></li>
+    <li><a href="#" onclick="go('shop')">Shop</a></li>
+    <li><a href="#" onclick="go('gallery')">Gallery</a></li>
+    <li><a href="#" onclick="go('about')">About</a></li>
+    <li><a href="#" onclick="go('contact')">Contact</a></li>
+  </ul>
+  <a class="nav-order" href="#" onclick="go('shop')">Order</a>
+</nav>
+
+<!-- ══════════════════════════════════════════════ HOME -->
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="hero-left">
+      <p class="hero-year">Handmade since 1987</p>
+      <h1 class="hero-h1">
+        Fudge the way<br>
+        <span>it ought to be.</span>
+      </h1>
+      <p class="hero-p">Small-batch, hand-poured, made with real butter and real cream. No shortcuts — because the people who eat it deserve better than that.</p>
+      <div class="hero-actions">
+        <a class="btn-fill" href="#" onclick="go('shop')">Order yours</a>
+        <a class="btn-text" href="#" onclick="go('about')">Our story</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-right-inner"></div>
+      <svg class="choc-slab" viewBox="0 0 420 280" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="slabGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#8a4e1f" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#3d1e08" stop-opacity="0.95"/>
+          </linearGradient>
+          <linearGradient id="topGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#a86030" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#6b3518" stop-opacity="0.5"/>
+          </linearGradient>
+        </defs>
+        <!-- Main slab body -->
+        <rect x="10" y="40" width="400" height="220" rx="6" fill="url(#slabGrad)"/>
+        <!-- Top sheen -->
+        <rect x="10" y="40" width="400" height="30" rx="6" fill="url(#topGrad)" opacity="0.6"/>
+        <!-- Score lines horizontal -->
+        <line x1="10" y1="131" x2="410" y2="131" stroke="#2a1207" stroke-width="1.5" opacity="0.7"/>
+        <!-- Score lines vertical -->
+        <line x1="147" y1="40" x2="147" y2="260" stroke="#2a1207" stroke-width="1.5" opacity="0.7"/>
+        <line x1="273" y1="40" x2="273" y2="260" stroke="#2a1207" stroke-width="1.5" opacity="0.7"/>
+        <!-- Subtle highlight edge -->
+        <rect x="10" y="40" width="400" height="220" rx="6" fill="none" stroke="#c8803a" stroke-width="1" opacity="0.18"/>
+        <!-- Salt crystals for sea salt caramel feel -->
+        <circle cx="80" cy="90" r="2.5" fill="#e8d8b0" opacity="0.22"/>
+        <circle cx="205" cy="75" r="1.8" fill="#e8d8b0" opacity="0.18"/>
+        <circle cx="330" cy="100" r="2.2" fill="#e8d8b0" opacity="0.2"/>
+        <circle cx="115" cy="200" r="1.6" fill="#e8d8b0" opacity="0.15"/>
+        <circle cx="360" cy="185" r="2" fill="#e8d8b0" opacity="0.18"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Flavor ticker -->
+  <div class="flavor-band">
+    <div class="flavor-track" id="ticker">
+      <span>Classic Dark Chocolate</span><span>Sea Salt Caramel</span><span>Maple Walnut</span>
+      <span>Rocky Road</span><span>Peanut Butter Swirl</span><span>Mint Chocolate Chip</span>
+      <span>Cookies & Cream</span><span>Raspberry Dark Chocolate</span><span>Pralines & Cream</span>
+      <span>Butterscotch</span><span>Eggnog</span><span>Lemon Cream</span>
+      <!-- dupe for seamless loop -->
+      <span>Classic Dark Chocolate</span><span>Sea Salt Caramel</span><span>Maple Walnut</span>
+      <span>Rocky Road</span><span>Peanut Butter Swirl</span><span>Mint Chocolate Chip</span>
+      <span>Cookies & Cream</span><span>Raspberry Dark Chocolate</span><span>Pralines & Cream</span>
+      <span>Butterscotch</span><span>Eggnog</span><span>Lemon Cream</span>
+    </div>
+  </div>
+
+  <!-- Staggered product rows -->
+  <div class="products-stagger">
+    <div class="stagger-intro">
+      <h2>Eighteen flavors.<br><em>All of them serious.</em></h2>
+      <p>We don't make a new flavor for the sake of it. Each one on this list has been made, tasted, argued over, and made again until it's exactly right.</p>
+    </div>
+
+    <div class="product-row" onclick="go('shop')">
+      <div class="product-visual">
+        <svg width="100%" height="100%" viewBox="0 0 560 380" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="560" height="380" fill="#1a0c04"/>
+          <rect x="50" y="60" width="460" height="260" rx="8" fill="#5c2a08" opacity="0.85"/>
+          <rect x="50" y="60" width="460" height="38" rx="8" fill="#7a3c0e" opacity="0.55"/>
+          <line x1="50" y1="190" x2="510" y2="190" stroke="#2e1405" stroke-width="2" opacity="0.8"/>
+          <line x1="203" y1="60" x2="203" y2="320" stroke="#2e1405" stroke-width="2" opacity="0.8"/>
+          <line x1="356" y1="60" x2="356" y2="320" stroke="#2e1405" stroke-width="2" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="product-meta">
+        <div class="product-num">01</div>
+        <div class="product-info">
+          <div class="product-name">Classic Dark<br><em>Chocolate</em></div>
+          <p class="product-flavor-note">70% cacao, slow-cooked to a deep, slightly bitter finish. No additives. No embellishments. Just chocolate doing what it does best.</p>
+          <div class="product-price-row">
+            <span class="product-price">$16</span>
+            <span class="product-unit">per half pound</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-row reverse" onclick="go('shop')">
+      <div class="product-meta">
+        <div class="product-num">02</div>
+        <div class="product-info">
+          <div class="product-name">Sea Salt<br><em>Caramel</em></div>
+          <p class="product-flavor-note">Slow-cooked caramel swirled through a silky fudge base, finished with fleur de sel. The contrast is the point.</p>
+          <div class="product-price-row">
+            <span class="product-price">$18</span>
+            <span class="product-unit">per half pound</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-visual">
+        <svg width="100%" height="100%" viewBox="0 0 560 380" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="560" height="380" fill="#140d04"/>
+          <rect x="50" y="60" width="460" height="260" rx="8" fill="#8a6020" opacity="0.75"/>
+          <rect x="50" y="60" width="460" height="38" rx="8" fill="#a87a28" opacity="0.5"/>
+          <path d="M50,190 Q150,170 250,195 Q350,218 510,190" stroke="#5a3a0a" stroke-width="3" fill="none" opacity="0.7"/>
+          <circle cx="160" cy="110" r="3" fill="#e8d0a0" opacity="0.25"/>
+          <circle cx="340" cy="240" r="2.5" fill="#e8d0a0" opacity="0.2"/>
+          <circle cx="440" cy="130" r="3.5" fill="#e8d0a0" opacity="0.22"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="product-row" onclick="go('shop')">
+      <div class="product-visual">
+        <svg width="100%" height="100%" viewBox="0 0 560 380" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="560" height="380" fill="#0c1208"/>
+          <rect x="50" y="60" width="460" height="260" rx="8" fill="#1e4d28" opacity="0.8"/>
+          <rect x="50" y="60" width="460" height="38" rx="8" fill="#276335" opacity="0.55"/>
+          <circle cx="140" cy="140" r="14" fill="#0e2a18" opacity="0.7"/>
+          <circle cx="250" cy="220" r="11" fill="#0e2a18" opacity="0.7"/>
+          <circle cx="370" cy="155" r="16" fill="#0e2a18" opacity="0.7"/>
+          <circle cx="460" cy="230" r="10" fill="#0e2a18" opacity="0.7"/>
+          <circle cx="110" cy="240" r="9" fill="#0e2a18" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="product-meta">
+        <div class="product-num">03</div>
+        <div class="product-info">
+          <div class="product-name">Mint<br><em>Chocolate Chip</em></div>
+          <p class="product-flavor-note">Real peppermint oil, not flavoring. A cooling, clean mint fudge folded with dark chocolate chips that melt into every bite.</p>
+          <div class="product-price-row">
+            <span class="product-price">$17</span>
+            <span class="product-unit">per half pound</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding-top: 4rem; text-align: center;">
+      <a class="btn-fill" href="#" onclick="go('shop')">See all flavors & order</a>
+    </div>
+  </div>
+
+  <!-- Craft statement -->
+  <div class="craft-statement">
+    <div class="craft-text">
+      <h2>The recipe hasn't changed since we started making it.</h2>
+      <p>Real butter, real cream, real time on the stove. Every batch is hand-poured and cut by hand, which means no two pieces are identical. That's not a flaw — that's the whole point. You can taste the difference between something made by a person and something made by a machine.</p>
+      <br/>
+      <p>We keep batches small because quality drops when you scale. We'd rather sell out than compromise.</p>
+    </div>
+    <div class="craft-visual">
+      <div class="craft-visual-fill"></div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-mark">Everything Fudge</span>
+    <ul class="footer-nav">
+      <li><a href="#" onclick="go('shop')">Shop</a></li>
+      <li><a href="#" onclick="go('gallery')">Gallery</a></li>
+      <li><a href="#" onclick="go('about')">About</a></li>
+      <li><a href="#" onclick="go('contact')">Contact</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Everything Fudge</span>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════ SHOP -->
+<div id="page-shop" class="page">
+  <div class="shop-hero">
+    <h1>Place your<br><em>order.</em></h1>
+    <p>All orders are made fresh. We'll reach out within 24 hours to confirm before charging anything.</p>
+  </div>
+
+  <div class="shop-body">
+    <div class="shop-form">
+      <div class="form-section-title">Choose your flavors</div>
+      <div class="field">
+        <label>Flavor — select one or more</label>
+        <div class="flavor-grid" id="fpGrid">
+          <div class="fpick" onclick="pickFlavor(this,'Classic Dark Chocolate',16)"><span class="fpick-name">Classic Dark Chocolate</span><span class="fpick-price">$16</span></div>
+          <div class="fpick" onclick="pickFlavor(this,'Sea Salt Caramel',18)"><span class="fpick-name">Sea Salt Caramel</span><span class="fpick-price">$18</span></div>
+          <div class="fpick" onclick="pickFlavor(this,'Maple Walnut',18)"><span class="fpick-name">Maple Walnut</span><span class="fpick-price">$18</span></div>
+          <div class="fpick" onclick="pickFlavor(this,'Peanut Butter Swirl',17)"><span class="fpick-name">Peanut Butter Swirl</span><span class="fpick-price">$17</span></div>
+          <div class="fpick" onclick="pickFlavor(this,'Mint Chocolate Chip',17)"><span class="fpick-name">Mint Chocolate Chip</span><span class="fpick-price">$17</span></div>
+          <div class="fpick" onclick="pickFlavor(this,'Rocky Road',18)"><span class="fpick-name">Rocky Road</span><span class="fpick-price">$18</span></div>
+          <div class="fpick" onclick="pickFlavor(this,'Cookies & Cream',16)"><span class="fpick-name">Cookies & Cream</span><span class="fpick-price">$16</span></div>
+          <div class="fpick" onclick="pickFlavor(this,'Raspberry Dark Chocolate',19)"><span class="fpick-name">Raspberry Dark Choc</span><span class="fpick-price">$19</span></div>
+          <div class="fpick" onclick="pickFlavor(this,'Pralines & Cream',17)"><span class="fpick-name">Pralines & Cream</span><span class="fpick-price">$17</span></div>
+          <div class="fpick" onclick="pickFlavor(this,'Butterscotch',16)"><span class="fpick-name">Butterscotch</span><span class="fpick-price">$16</span></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Size</label>
+        <select id="sizeSelect" onchange="recalc()">
+          <option value="0.5">Half pound — listed price</option>
+          <option value="1">Full pound — 1.8× listed price</option>
+          <option value="sampler">Sampler box, 4 flavors (2 oz each) — $24 flat</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Quantity</label>
+        <div class="qty-wrap">
+          <button class="qty-btn" onclick="adjQty(-1)">−</button>
+          <input class="qty-num" id="qtyNum" type="number" value="1" min="1" max="99" onchange="recalc()" />
+          <button class="qty-btn" onclick="adjQty(1)">+</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Gift message (optional — we'll include a card)</label>
+        <textarea placeholder="Write whatever feels right."></textarea>
+      </div>
+
+      <div class="form-section-title" style="margin-top:3rem;">Your information</div>
+
+      <div class="field field-row">
+        <div class="field"><label>First name</label><input type="text" placeholder="Jane" /></div>
+        <div class="field"><label>Last name</label><input type="text" placeholder="Smith" /></div>
+      </div>
+      <div class="field"><label>Email</label><input type="email" placeholder="jane@example.com" /></div>
+      <div class="field"><label>Phone</label><input type="tel" placeholder="(555) 000-0000" /></div>
+
+      <div class="field">
+        <label>How would you like to receive it?</label>
+        <select id="delivSelect" onchange="toggleAddr()">
+          <option value="pickup">Local pickup (free)</option>
+          <option value="local">Local delivery (+$5)</option>
+          <option value="ship">Ship to me (+$12)</option>
+        </select>
+      </div>
+
+      <div id="addrBlock" style="display:none;">
+        <div class="field"><label>Street address</label><input type="text" placeholder="123 Main St" /></div>
+        <div class="field field-row">
+          <div class="field"><label>City</label><input type="text" /></div>
+          <div class="field"><label>ZIP</label><input type="text" /></div>
+        </div>
+      </div>
+
+      <div class="field"><label>Anything else we should know?</label><textarea placeholder="Allergies, special requests, that kind of thing."></textarea></div>
+
+      <button class="submit-btn" onclick="alert('We\u2019ll be in touch within 24 hours to confirm your order before any payment is taken. Thank you!')">Submit order request</button>
+      <p style="font-family:var(--ui);font-size:0.68rem;font-weight:300;color:rgba(212,184,130,0.25);margin-top:0.75rem;text-align:center;letter-spacing:0.04em;">No payment collected until we confirm your order by phone or email.</p>
+    </div>
+
+    <div class="shop-sidebar">
+      <div class="sidebar-heading">Your order</div>
+      <div id="sideItems"><p style="font-family:var(--text);font-style:italic;font-size:0.85rem;color:rgba(212,184,130,0.25);">Nothing selected yet.</p></div>
+      <div class="side-total">
+        <span class="side-total-label">Estimated total</span>
+        <span class="side-total-price" id="sideTotal">—</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-mark">Everything Fudge</span>
+    <ul class="footer-nav">
+      <li><a href="#" onclick="go('home')">Home</a></li>
+      <li><a href="#" onclick="go('gallery')">Gallery</a></li>
+      <li><a href="#" onclick="go('about')">About</a></li>
+      <li><a href="#" onclick="go('contact')">Contact</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Everything Fudge</span>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════ GALLERY -->
+<div id="page-gallery" class="page">
+  <div class="gallery-header">
+    <h1>Made by hand.<br><em>Looks like it too.</em></h1>
+    <p>We don't retouch our photos. What you see is what we pour, cut, and wrap — every batch a little different from the last.</p>
+  </div>
+
+  <div class="gallery-canvas">
+    <div class="gc a">
+      <svg width="100%" height="100%" viewBox="0 0 400 660" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="660" fill="#1c0e05"/>
+        <rect x="40" y="80" width="320" height="200" rx="6" fill="#6b3010" opacity="0.85"/>
+        <rect x="40" y="80" width="320" height="28" rx="6" fill="#8a4018" opacity="0.6"/>
+        <line x1="40" y1="181" x2="360" y2="181" stroke="#2e1205" stroke-width="2" opacity="0.7"/>
+        <line x1="147" y1="80" x2="147" y2="280" stroke="#2e1205" stroke-width="2" opacity="0.7"/>
+        <line x1="253" y1="80" x2="253" y2="280" stroke="#2e1205" stroke-width="2" opacity="0.7"/>
+        <rect x="40" y="360" width="320" height="200" rx="6" fill="#8a6020" opacity="0.75"/>
+        <rect x="40" y="360" width="320" height="28" rx="6" fill="#a87828" opacity="0.5"/>
+        <path d="M40,461 Q120,445 200,465 Q280,484 360,461" stroke="#5a3c0a" stroke-width="2.5" fill="none" opacity="0.65"/>
+      </svg>
+      <div class="gc-label">Classic & Caramel</div>
+    </div>
+    <div class="gc b">
+      <svg width="100%" height="100%" viewBox="0 0 280 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="280" height="340" fill="#0c1a10"/>
+        <rect x="25" y="40" width="230" height="260" rx="6" fill="#1e5030" opacity="0.8"/>
+        <circle cx="80" cy="150" r="18" fill="#0e2818" opacity="0.7"/>
+        <circle cx="160" cy="200" r="14" fill="#0e2818" opacity="0.7"/>
+        <circle cx="220" cy="140" r="20" fill="#0e2818" opacity="0.7"/>
+      </svg>
+      <div class="gc-label">Mint Chip</div>
+    </div>
+    <div class="gc c">
+      <svg width="100%" height="100%" viewBox="0 0 220 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="220" height="340" fill="#100808"/>
+        <rect x="20" y="40" width="180" height="260" rx="6" fill="#6b1830" opacity="0.8"/>
+        <rect x="20" y="40" width="180" height="24" rx="6" fill="#8a2040" opacity="0.55"/>
+        <line x1="20" y1="170" x2="200" y2="170" stroke="#3e0c1a" stroke-width="2" opacity="0.7"/>
+      </svg>
+      <div class="gc-label">Raspberry Dark</div>
+    </div>
+    <div class="gc d">
+      <svg width="100%" height="100%" viewBox="0 0 560 220" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="560" height="220" fill="#180e04"/>
+        <rect x="30" y="30" width="500" height="160" rx="6" fill="#7a5020" opacity="0.75"/>
+        <ellipse cx="120" cy="110" rx="28" ry="18" fill="#4a2e08" opacity="0.6"/>
+        <ellipse cx="260" cy="90" rx="24" ry="16" fill="#4a2e08" opacity="0.6"/>
+        <ellipse cx="400" cy="120" rx="30" ry="18" fill="#4a2e08" opacity="0.6"/>
+        <ellipse cx="490" cy="95" rx="20" ry="13" fill="#4a2e08" opacity="0.55"/>
+      </svg>
+      <div class="gc-label">Maple Walnut</div>
+    </div>
+    <div class="gc e">
+      <svg width="100%" height="100%" viewBox="0 0 380 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="380" height="300" fill="#140c04"/>
+        <rect x="30" y="35" width="320" height="230" rx="6" fill="#4a2808" opacity="0.85"/>
+        <rect x="30" y="35" width="320" height="28" rx="6" fill="#6a3a10" opacity="0.55"/>
+        <rect x="30" y="148" width="320" height="3" fill="#2a1404" opacity="0.8"/>
+        <rect x="155" y="35" width="3" height="230" fill="#2a1404" opacity="0.8"/>
+      </svg>
+      <div class="gc-label">Peanut Butter Swirl</div>
+    </div>
+    <div class="gc f">
+      <svg width="100%" height="100%" viewBox="0 0 280 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="280" height="300" fill="#0e0e0e"/>
+        <rect x="25" y="35" width="230" height="230" rx="6" fill="#303030" opacity="0.8"/>
+        <rect x="25" y="35" width="230" height="24" rx="6" fill="#484848" opacity="0.55"/>
+        <circle cx="80" cy="140" r="12" fill="#0a0a0a" opacity="0.7"/>
+        <circle cx="140" cy="175" r="10" fill="#0a0a0a" opacity="0.7"/>
+        <circle cx="200" cy="145" r="13" fill="#0a0a0a" opacity="0.65"/>
+        <circle cx="160" cy="110" r="9" fill="#0a0a0a" opacity="0.7"/>
+      </svg>
+      <div class="gc-label">Cookies & Cream</div>
+    </div>
+    <div class="gc g">
+      <svg width="100%" height="100%" viewBox="0 0 220 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="220" height="300" fill="#12100a"/>
+        <rect x="20" y="35" width="180" height="230" rx="6" fill="#7a6018" opacity="0.75"/>
+        <path d="M20,150 Q70,130 110,155 Q150,178 200,150" stroke="#4a3808" stroke-width="2.5" fill="none" opacity="0.7"/>
+      </svg>
+      <div class="gc-label">Butterscotch</div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-mark">Everything Fudge</span>
+    <ul class="footer-nav">
+      <li><a href="#" onclick="go('home')">Home</a></li>
+      <li><a href="#" onclick="go('shop')">Shop</a></li>
+      <li><a href="#" onclick="go('about')">About</a></li>
+      <li><a href="#" onclick="go('contact')">Contact</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Everything Fudge</span>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════ ABOUT -->
+<div id="page-about" class="page">
+  <div class="about-open">
+    <div class="about-portrait-col">
+      <div class="about-portrait-fill"></div>
+    </div>
+    <div class="about-text-col">
+      <h1>Made by one person<br>who knows<br><em>exactly what she's doing.</em></h1>
+      <p>This business started in a home kitchen, with a recipe that had been in the family for a long time. No commercial equipment, no investor money, no consultants. Just a stove, a thermometer, and a belief that people can taste the difference between something made with care and something made for margin.</p>
+      <p>Decades later, very little has changed — which is exactly the point. The recipe is the same. The ingredients are real. The batches are still small enough that every single one gets our full attention.</p>
+      <br/>
+      <a class="btn-fill" href="#" onclick="go('shop')">Order fudge</a>
+    </div>
+  </div>
+
+  <div class="about-large-quote">
+    <blockquote>
+      "I never thought of it as a business. I thought of it as something I made for the people I loved. Turns out there are a lot of people I've never met who love it too."
+    </blockquote>
+    <cite>— Founder, Everything Fudge</cite>
+  </div>
+
+  <footer>
+    <span class="footer-mark">Everything Fudge</span>
+    <ul class="footer-nav">
+      <li><a href="#" onclick="go('home')">Home</a></li>
+      <li><a href="#" onclick="go('shop')">Shop</a></li>
+      <li><a href="#" onclick="go('gallery')">Gallery</a></li>
+      <li><a href="#" onclick="go('contact')">Contact</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Everything Fudge</span>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════ CONTACT -->
+<div id="page-contact" class="page">
+  <div class="contact-split">
+    <div class="contact-left">
+      <h1>Say<br><em>hello.</em></h1>
+
+      <div class="field"><label>Name</label><input type="text" placeholder="Your name" /></div>
+      <div class="field"><label>Email</label><input type="email" placeholder="your@email.com" /></div>
+      <div class="field">
+        <label>What's this about?</label>
+        <select>
+          <option value="">Pick one</option>
+          <option>Custom or bulk order</option>
+          <option>Corporate or event order</option>
+          <option>Wholesale inquiry</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="field"><label>Message</label><textarea placeholder="Whatever you'd like to say."></textarea></div>
+      <button class="submit-btn" onclick="alert('Message sent. We\u2019ll get back to you soon.')">Send it</button>
+    </div>
+
+    <div class="contact-right">
+      <div class="contact-detail">
+        <div class="contact-detail-label">Email</div>
+        <div class="contact-detail-value">hello@everythingfudge.com</div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-label">Phone</div>
+        <div class="contact-detail-value">(555) 000-0000</div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-label">Hours</div>
+        <div class="contact-detail-value">Monday – Saturday<br>9 am to 6 pm</div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-label">Pickup</div>
+        <div class="contact-detail-value">Available after order confirmation</div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-label">Bulk & wholesale</div>
+        <div class="contact-detail-value" style="font-size:0.95rem; font-style:normal; font-family:var(--text); color:rgba(212,184,130,0.55); line-height:1.7;">Planning a wedding, event, or want to carry our fudge? We offer custom pricing for orders of 5 lbs or more. Use the form to get in touch.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-mark">Everything Fudge</span>
+    <ul class="footer-nav">
+      <li><a href="#" onclick="go('home')">Home</a></li>
+      <li><a href="#" onclick="go('shop')">Shop</a></li>
+      <li><a href="#" onclick="go('gallery')">Gallery</a></li>
+      <li><a href="#" onclick="go('about')">About</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Everything Fudge</span>
+  </footer>
+</div>
+
+<script>
+  // Page nav
+  function go(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    window.scrollTo(0, 0);
+    if (name === 'shop') setTimeout(recalc, 50);
+  }
+
+  // Nav scroll
+  const navEl = document.getElementById('nav');
+  window.addEventListener('scroll', () => navEl.classList.toggle('solid', window.scrollY > 50), { passive: true });
+
+  // Shop: flavor picks
+  const picks = {};
+  function pickFlavor(el, name, price) {
+    if (el.classList.contains('on')) { el.classList.remove('on'); delete picks[name]; }
+    else { el.classList.add('on'); picks[name] = price; }
+    recalc();
+  }
+
+  // Shop: qty
+  function adjQty(d) {
+    const el = document.getElementById('qtyNum');
+    el.value = Math.max(1, parseInt(el.value || 1) + d);
+    recalc();
+  }
+
+  // Shop: delivery toggle
+  function toggleAddr() {
+    const v = document.getElementById('delivSelect')?.value;
+    const b = document.getElementById('addrBlock');
+    if (b) b.style.display = (v === 'local' || v === 'ship') ? 'block' : 'none';
+  }
+  document.addEventListener('change', e => { if (e.target.id === 'delivSelect') toggleAddr(); });
+
+  // Shop: recalculate
+  function recalc() {
+    const qty = parseInt(document.getElementById('qtyNum')?.value || 1);
+    const size = document.getElementById('sizeSelect')?.value || '0.5';
+    const delivery = document.getElementById('delivSelect')?.value || 'pickup';
+    const dFee = delivery === 'local' ? 5 : delivery === 'ship' ? 12 : 0;
+    const flavors = Object.keys(picks);
+
+    let sub = 0;
+    let html = '';
+    flavors.forEach(name => {
+      let u = picks[name];
+      if (size === '1') u = Math.round(u * 1.8);
+      if (size === 'sampler') u = 24;
+      const line = u * qty;
+      sub += line;
+      const sizeLabel = size === '0.5' ? 'half lb' : size === '1' ? 'full lb' : 'sampler';
+      html += `<div class="side-item"><span class="side-item-name">${name}<br><span style="font-size:0.75rem;opacity:0.55;">${sizeLabel} × ${qty}</span></span><span class="side-item-price">$${line}</span></div>`;
+    });
+    if (dFee) html += `<div class="side-item"><span class="side-item-name">${delivery === 'local' ? 'Local delivery' : 'Shipping'}</span><span class="side-item-price">$${dFee}</span></div>`;
+
+    const total = sub + dFee;
+    document.getElementById('sideItems').innerHTML = html || '<p style="font-family:var(--text);font-style:italic;font-size:0.85rem;color:rgba(212,184,130,0.25);">Nothing selected yet.</p>';
+    document.getElementById('sideTotal').textContent = flavors.length ? `$${total}` : '—';
+  }
+</script>
+</body>
+</html>
