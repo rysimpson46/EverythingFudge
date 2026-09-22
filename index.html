@@ -54,7 +54,9 @@ nav.solid .nav-logo{height:30px}
 .hero-h1{font-family:var(--display);font-size:clamp(2.8rem,5.5vw,5.2rem);font-weight:300;line-height:1.0;color:var(--ink);margin-bottom:1.6rem}
 .hero-h1 em{font-style:italic;color:var(--mocha)}
 .hero-line{width:2.5rem;height:1px;background:var(--bark);margin-bottom:1.4rem}
-.hero-sub{font-size:.87rem;font-weight:300;color:var(--espresso);max-width:340px;line-height:1.85;opacity:.82;margin-bottom:2.5rem}
+.hero-mission{font-size:.82rem;font-weight:300;color:var(--espresso);max-width:360px;line-height:1.75;opacity:.78;margin-bottom:2rem;border-left:2px solid var(--bark);padding-left:1rem}
+    .hero-mission strong{font-weight:500;color:var(--mocha)}
+    .hero-sub{font-size:.87rem;font-weight:300;color:var(--espresso);max-width:340px;line-height:1.85;opacity:.82;margin-bottom:2.5rem}
 .hero-btns{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
 .btn-fill{font-family:var(--ui);font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white);background:var(--espresso);padding:.85rem 2.2rem;cursor:pointer;border:none;transition:background .2s}
 .btn-fill:hover{background:var(--mocha)}
@@ -247,7 +249,9 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
   .hero-right{display:none}
   .hero-left{padding:3.5rem 1.5rem 4rem}
   .hero-h1{font-size:2.6rem}
-  .hero-sub{max-width:100%}
+  .hero-mission{font-size:.82rem;font-weight:300;color:var(--espresso);max-width:360px;line-height:1.75;opacity:.78;margin-bottom:2rem;border-left:2px solid var(--bark);padding-left:1rem}
+    .hero-mission strong{font-weight:500;color:var(--mocha)}
+    .hero-sub{max-width:100%}
   .hero-btns{flex-direction:column;align-items:stretch}
   .btn-fill{text-align:center}
   .intro{grid-template-columns:1fr;gap:2rem;padding:4rem 1.5rem}
@@ -365,6 +369,7 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
       <h1 class="hero-h1">Fudge the way<br><em>it ought to be.</em></h1>
       <div class="hero-line"></div>
       <p class="hero-sub">Real butter. Real cream. Cooked and cut by hand — the same way since the first batch in 1987.</p>
+      <p class="hero-mission">Everything Fudge was born from a simple belief &mdash; that the finest ingredients, made by hand, can do more than delight. They can feed a neighbor. <strong>100% of our profits go directly to local food pantries in Jefferson County.</strong></p>
       <div class="hero-btns">
         <button class="btn-fill" onclick="go('shop')">Shop now</button>
         <button class="btn-text" onclick="go('about')">Our story</button>
@@ -600,14 +605,44 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
       <p class="about-eye">Our Story</p>
       <h1>Made by hand,<br><em>with intention.</em></h1>
       <div class="about-rule"></div>
-      <p>Everything Fudge started in a home kitchen in 1987 with one pan, one recipe, and no shortcuts. The original batch was shared with neighbors. Word spread. The recipe stayed the same.</p>
-      <p>We still cook everything by hand, cut every slab by hand, and refuse to automate anything that matters. The result is fudge that tastes like someone made it — because someone did.</p>
-      <p>We make four flavors. We have made them for over thirty years. We do not plan to add another one unless it earns its place.</p>
+      <p class="about-location">Handmade &middot; Small-batch &middot; Jefferson County, Idaho</p>
+      <div class="about-rule"></div>
+
+      <h2 class="about-section-h">The Artisanal Heart</h2>
+      <p>Ever since I can remember, I have always wanted to be some grand heroine and save the world &mdash; only to realize that my greatest impact lay in the craft I loved most.</p>
+      <p>Everything Fudge is the intersection of high-end artistry and a heart for service. Inspired by the precision of Swiss-German confectionery, every batch is a small-batch ritual &mdash; hand-stirred, hand-beaten, and hand-portioned right here in Rigby, Idaho.</p>
+
+      <div class="about-divider"></div>
+      <h2 class="about-section-h">How It Began</h2>
+      <p>It did not start with a business plan. It started with a copper pot, a block of Callebaut couverture chocolate, and a deep belief that the finest things in life should be made slowly, with intention, and shared generously.</p>
+      <p>I taught myself the craft the old way &mdash; studying European confectionery technique, sourcing only the ingredients that professional chocolatiers trust: Dutch Swiss butter, high-fat cream, Dutch processed cocoa, and Belgian Callebaut couverture. No shortcuts. No substitutes.</p>
+      <p>What began as a labor of love in a village kitchen became something I could not keep to myself.</p>
+
+      <div class="about-divider"></div>
+      <h2 class="about-section-h">Fudge with a Purpose</h2>
+      <p>As the batches grew, so did a question: <em>what if this craft could do more than delight?</em></p>
+      <p>In the tradition of European excellence, we believe that true luxury is found in community. That is why 100% of our profits are donated directly to local food pantries in the Rigby and Idaho Falls areas &mdash; including our proud partner, <strong>The Giving Cupboard</strong>.</p>
+      <p>When you gift Everything Fudge, you are not just rewarding your team or treating someone you love. You are providing a meal for a neighbor in need.</p>
+
+      <div class="about-divider"></div>
+      <h2 class="about-section-h">What We Believe</h2>
+      <p class="about-belief">Real butter. Real cream. Real impact.</p>
+      <p>We reject industrial shortcuts in favor of a five-step Small-Batch Ritual:</p>
+      <ol class="about-ritual">
+        <li><span class="ritual-num">01</span><span class="ritual-body"><strong>Sourcing of Origins</strong> &mdash; Only the finest ingredients make it into our kitchen.</span></li>
+        <li><span class="ritual-num">02</span><span class="ritual-body"><strong>The Melt</strong> &mdash; Slow-infused to a precise temperature, never rushed.</span></li>
+        <li><span class="ritual-num">03</span><span class="ritual-body"><strong>Deliberate Cool</strong> &mdash; A patient cooling that builds the foundation of perfect texture.</span></li>
+        <li><span class="ritual-num">04</span><span class="ritual-body"><strong>The Hand-Beating</strong> &mdash; Beaten by hand to create a micro-crystalline, velvet texture that melts at body temperature.</span></li>
+        <li><span class="ritual-num">05</span><span class="ritual-body"><strong>Hand-Portioned</strong> &mdash; Each piece cut by hand for an authentic, rustic finish.</span></li>
+      </ol>
     </div>
   </div>
   <div class="about-quote">
-    <blockquote>"The test was always the same: does it make you close your eyes when you eat it? If not, we are not done yet."</blockquote>
-    <cite>— The Founder</cite>
+    <blockquote class="about-promise-quote">&ldquo;You do not have to change the whole world to make it a little sweeter.&rdquo;</blockquote>
+    <p class="about-promise-body">Every purchase is a ripple effect of kindness. Every bite, a testament to what happens when craft meets conscience.</p>
+    <p class="about-promise-body">Thank you for being part of something sweeter.</p>
+    <cite>&mdash; The Everything Fudge Family</cite>
+    <p class="about-footer-note">Hand-finished in Rigby, Idaho &middot; 100% of profits support local food pantries.</p>
   </div>
 </div>
 
