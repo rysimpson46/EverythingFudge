@@ -24,8 +24,8 @@ body{font-family:var(--ui);background:var(--white);color:var(--ink);font-size:15
 nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:var(--nav-h);background:rgba(250,247,242,0);transition:background .35s,border-color .35s;border-bottom:1px solid transparent}
 nav.solid{background:rgba(250,247,242,0.97);border-bottom:var(--rule)}
 .nav-logo-link{display:flex;align-items:center;cursor:pointer;flex-shrink:0}
-.nav-logo{height:38px;width:auto;transition:height .25s}
-nav.solid .nav-logo{height:30px}
+.nav-logo{height:52px;width:auto;transition:height .25s}
+nav.solid .nav-logo{height:40px}
 .nav-links{list-style:none;display:flex;gap:2rem}
 .nav-links a{font-family:var(--ui);font-size:.68rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--espresso);text-decoration:none;opacity:.7;transition:opacity .2s;cursor:pointer}
 .nav-links a:hover{opacity:1}
@@ -148,7 +148,8 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
 .pd-name{font-family:var(--display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.05;color:var(--ink)}
 .pd-name em{font-style:italic;color:var(--mocha)}
 .pd-tagline{font-family:var(--display);font-style:italic;font-size:1rem;color:var(--mocha);font-weight:300;line-height:1.5}
-.pd-desc{font-size:.85rem;font-weight:300;line-height:1.9;color:var(--espresso);opacity:.85}
+.pd-wholesale{font-family:var(--ui);font-size:.67rem;font-weight:400;letter-spacing:.08em;color:var(--mocha);opacity:.75;border-left:2px solid var(--bark);padding-left:.75rem;line-height:1.55}
+    .pd-desc{font-size:.85rem;font-weight:300;line-height:1.9;color:var(--espresso);opacity:.85}
 .pd-rule{width:100%;height:1px;background:var(--stone)}
 
 /* Package cards */
@@ -365,10 +366,10 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
 <div id="page-home" class="page active">
   <div class="hero">
     <div class="hero-left">
-      <p class="hero-pre">Handmade &middot; Small-batch &middot; Since 1987</p>
+      <p class="hero-pre">Handmade &middot; Small-batch &middot; Since 2017</p>
       <h1 class="hero-h1">Fudge the way<br><em>it ought to be.</em></h1>
       <div class="hero-line"></div>
-      <p class="hero-sub">Real butter. Real cream. Cooked and cut by hand — the same way since the first batch in 1987.</p>
+      <p class="hero-sub">Real butter. Real cream. Cooked and cut by hand — the same way since the first batch in 2017.</p>
       <p class="hero-mission">Everything Fudge was born from a simple belief &mdash; that the finest ingredients, made by hand, can do more than delight. They can feed a neighbor. <strong>100% of our profits go directly to local food pantries in Jefferson County.</strong></p>
       <div class="hero-btns">
         <button class="btn-fill" onclick="go('shop')">Shop now</button>
@@ -436,7 +437,7 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
         <div class="pcard-body">
           <div class="pcard-num">04</div>
           <div class="pcard-name">Piedmont <em>Peanut</em></div>
-          <p class="pcard-note">Dark chocolate studded with whole roasted peanuts, lightly salted.</p>
+          <p class="pcard-note">Whole roasted peanuts folded into a rich fudge base, lightly salted.</p>
           <div class="pcard-price">from $18</div>
         </div>
       </div>
@@ -448,7 +449,7 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
     <div class="craft-txt">
       <p class="craft-eye">The Method</p>
       <h2 class="craft-h2">Made by hand.<br>No exceptions.</h2>
-      <p class="craft-p">Every batch is cooked, poured, and cut by hand. We have been doing it this way since 1987 — because it is the only way to get it right.</p>
+      <p class="craft-p">Every batch is cooked, poured, and cut by hand. We have been doing it this way since 2017 — because it is the only way to get it right.</p>
       <button class="btn-light" onclick="go('about')">Read our story</button>
     </div>
   </div>
@@ -473,7 +474,7 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
       <button class="cat-btn" onclick="showFlavor('Madison River Swirl',this)">Madison River Swirl</button>
       <button class="cat-btn" onclick="showFlavor('Alpine Sea Salt',this)">Alpine Sea Salt</button>
       <button class="cat-btn" onclick="showFlavor('Piedmont Peanut',this)">Piedmont Peanut</button>
-      <button class="cat-btn" onclick="showFlavor('all',this)">Gift Sets</button>
+      <button class="cat-btn" onclick="showFlavor('all',this)">Office Gift Sets</button>
     </div></div>
 
     <div class="product-detail">
@@ -495,6 +496,7 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
         </div>
         <p class="pd-tagline" id="pdTagline"></p>
         <p class="pd-desc"    id="pdDesc"></p>
+        <p class="pd-wholesale">Wholesale only &middot; Minimum order $100 &middot; Available for corporate gifting, employee appreciation, and seasonal gifting.</p>
         <div class="pd-rule"></div>
 
         <div>
@@ -502,21 +504,21 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
           <div class="pkg-grid">
             <div class="pkg-card" id="pkg0" onclick="pickPkg(0,'The Soloist',18)">
               <div class="pkg-card-name">The Soloist</div>
-              <div class="pkg-card-sub">Gift box &middot; 6 pieces</div>
-              <div class="pkg-card-desc">One flavor, beautifully boxed. Perfect as a gift or a treat for yourself.</div>
+              <div class="pkg-card-sub">Half-pound slab &middot; Single flavor</div>
+              <div class="pkg-card-desc">Wrapped in clear cellophane and tied with a gold satin ribbon. One flavor, beautifully presented.</div>
               <div class="pkg-card-price">$18</div>
             </div>
             <div class="pkg-card" id="pkg1" onclick="pickPkg(1,'The Rigby Duo',32)">
               <div class="pkg-card-name">The Rigby Duo</div>
-              <div class="pkg-card-sub">Gift box &middot; 12 pieces &middot; 2 flavors</div>
-              <div class="pkg-card-desc">Two flavors side by side. Great for gifting when you cannot pick just one.</div>
-              <div class="pkg-card-price">$32</div>
+              <div class="pkg-card-sub">Two quarter-pound slabs &middot; Your chosen flavor</div>
+              <div class="pkg-card-desc">Two slabs wrapped together in a clean white band with the gold EF monogram. Understated and elegant.</div>
+              <div class="pkg-card-price">$28</div>
             </div>
             <div class="pkg-card" id="pkg2" onclick="pickPkg(2,'The Grand Terrace',58)">
               <div class="pkg-card-name">The Grand Terrace</div>
-              <div class="pkg-card-sub">Gift box &middot; 24 pieces &middot; All 4 flavors</div>
-              <div class="pkg-card-desc">The full lineup, ribbon included. Our most gifted box — no wrapping required.</div>
-              <div class="pkg-card-price">$58</div>
+              <div class="pkg-card-sub">1&frac12; lbs &middot; All four flavors &middot; White gift box</div>
+              <div class="pkg-card-desc">Hand-sliced pieces across all four flavors in a white box with a clear lid, gold ribbon alongside. Gift-ready from the moment it arrives.</div>
+              <div class="pkg-card-price">$55</div>
             </div>
             <div class="pkg-card" id="pkg3" onclick="pickPkg(3,'The Bulk Slab',80)">
               <div class="pkg-card-name">The Bulk Slab</div>
@@ -558,7 +560,7 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
         <div>
           <div class="detail-item">
             <button class="detail-toggle" onclick="toggleDetail(this)">Delivery &amp; pickup <span class="detail-chevron">&#9662;</span></button>
-            <div class="detail-body">Ship anywhere in the US, or choose local delivery or pickup in Salt Lake City, Utah. We confirm all delivery details when we reach out to finalize your order.</div>
+            <div class="detail-body">Local delivery available in Rigby and Idaho Falls, Idaho only. We confirm all delivery details when we reach out to finalize your order.</div>
           </div>
           <div class="detail-item">
             <button class="detail-toggle" onclick="toggleDetail(this)">Lead time <span class="detail-chevron">&#9662;</span></button>
@@ -662,9 +664,8 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
     </div>
     <div class="contact-info-col">
       <div><div class="ci-label">Email</div><div class="ci-val">hello@everythingfudge.com</div></div>
-      <div><div class="ci-label">Phone</div><div class="ci-val">(555) 000-0000</div></div>
-      <div><div class="ci-label">Location</div><div class="ci-val">Salt Lake City, Utah</div></div>
-      <div><div class="ci-label">Orders</div><div class="ci-val">Min $100 &middot; Two weeks notice</div></div>
+      <div><div class="ci-label">Location</div><div class="ci-val">Rigby, Idaho</div></div>
+      <div><div class="ci-label">Orders</div><div class="ci-val">Min $100 &middot; Two weeks&rsquo; notice</div></div>
       <div><div class="ci-label">Wholesale</div><div class="ci-val">Available — let us talk</div></div>
     </div>
   </div>
@@ -739,21 +740,21 @@ var FLAVOR_NAME = {
   'Madison River Swirl':'Madison River <em>Swirl</em>',
   'Alpine Sea Salt':    'Alpine <em>Sea Salt</em>',
   'Piedmont Peanut':    'Roasted <em>Piedmont Peanut</em>',
-  'all':                'Gift <em>Sets</em>'
+  'all':                'Office <em>Gift Sets</em>'
 };
 var FLAVOR_TAGLINE = {
   'Heritage Classic':   'Velvet-smooth dark cocoa, slow-tempered until it is exactly right.',
   'Madison River Swirl':'Dark chocolate folded with golden caramel in long, unhurried ribbons.',
   'Alpine Sea Salt':    'Milk chocolate finished with a measured hand of flaked sea salt.',
-  'Piedmont Peanut':    'Dark chocolate studded with whole roasted peanuts, lightly salted.',
-  'all':                'All four flavors. One beautiful box.'
+  'Piedmont Peanut':    'Whole roasted peanuts folded into a rich fudge base, lightly salted.',
+  'all':                'The Grand Terrace &mdash; our signature gift for teams, clients, and every occasion that deserves something real.'
 };
 var FLAVOR_DESC = {
-  'Heritage Classic':   'Made with real butter, real cream, and premium dark cocoa. Cooked to temperature by hand and poured into slabs the same way since 1987. Pure and unfussy.',
+  'Heritage Classic':   'Made with real butter, real cream, and premium dark cocoa. Cooked to temperature by hand and poured into slabs the same way since 2017. Pure and unfussy.',
   'Madison River Swirl':'Two things that belong together. Dark cocoa fudge swirled with ribbon caramel before it sets — every piece looks and tastes different. A perennial favorite.',
   'Alpine Sea Salt':    'Creamy milk chocolate fudge, lighter and rounder than the Classic, finished with hand-scattered flaked sea salt. The contrast is the point.',
-  'Piedmont Peanut':    'A rich dark fudge base loaded with whole roasted peanuts. Salty, nutty, deeply satisfying. The one people always ask us to make more of.',
-  'all':                'The complete Everything Fudge lineup arranged together in a gift-ready box with a ribbon. Our most gifted item — no wrapping required.'
+  'Piedmont Peanut':    'A rich fudge base loaded with whole roasted peanuts. Salty, nutty, deeply satisfying. The one people always ask us to make more of.',
+  'all':                'A pound and a half of hand-sliced Everything Fudge \u2014 Heritage Classic, Madison River Swirl, Alpine Sea Salt, and Piedmont Peanut \u2014 arranged in a white gift box with a clear lid so every piece is visible before it is even opened. Finished with a gold ribbon tied around the box. This is our signature gift. The one that arrives and stops the room. Perfect for employee appreciation, holiday gifting, client thank-yous, and anyone who deserves something genuinely handmade. Hand-finished in Rigby, Idaho since 2017 \u00b7 100% of profits support local food pantries in Jefferson County.'
 };
 
 // ── Nav ──
