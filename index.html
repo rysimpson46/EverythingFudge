@@ -308,6 +308,26 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
   .product-grid{grid-template-columns:1fr 1fr}
   .pcard{border-right:var(--rule)!important}
 }
+
+/* ── Email Popup ── */
+.popup-overlay{position:fixed;inset:0;background:rgba(26,16,8,.55);z-index:9000;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .35s}
+.popup-overlay.show{opacity:1;pointer-events:all}
+.popup-box{background:var(--cream);max-width:420px;width:100%;padding:2.8rem 2.4rem 2.4rem;position:relative;text-align:center}
+.popup-close{position:absolute;top:.9rem;right:1.1rem;background:none;border:none;font-size:1.2rem;color:var(--mocha);cursor:pointer;line-height:1;padding:.2rem .4rem}
+.popup-close:hover{color:var(--espresso)}
+.popup-eyebrow{font-family:var(--ui);font-size:.65rem;font-weight:400;letter-spacing:.15em;text-transform:uppercase;color:var(--mocha);margin-bottom:.7rem}
+.popup-headline{font-family:var(--display);font-size:1.9rem;font-weight:300;line-height:1.1;color:var(--ink);margin-bottom:.6rem}
+.popup-headline em{font-style:italic;color:var(--mocha)}
+.popup-sub{font-family:var(--ui);font-size:.78rem;font-weight:300;color:var(--espresso);opacity:.8;line-height:1.6;margin-bottom:1.6rem}
+.popup-form{display:flex;flex-direction:column;gap:.7rem}
+.popup-form input{border:1.5px solid var(--stone);background:var(--white);padding:.7rem .9rem;font-family:var(--ui);font-size:.82rem;font-weight:300;color:var(--ink);outline:none;transition:border-color .2s}
+.popup-form input:focus{border-color:var(--espresso)}
+.popup-form input::placeholder{color:var(--bark)}
+.popup-btn{background:var(--espresso);color:var(--cream);border:none;padding:.8rem 1.2rem;font-family:var(--ui);font-size:.75rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.popup-btn:hover{background:var(--ink)}
+.popup-skip{font-family:var(--ui);font-size:.68rem;color:var(--mocha);opacity:.7;cursor:pointer;margin-top:.5rem;background:none;border:none;text-decoration:underline}
+.popup-skip:hover{opacity:1}
+.popup-success{font-family:var(--display);font-size:1.3rem;font-weight:300;color:var(--espresso);padding:1rem 0;display:none}
 </style>
 </head>
 <body>
@@ -893,7 +913,57 @@ function toggleDetail(btn) {
   btn.nextElementSibling.classList.toggle('open');
 }
 
+
+// ── Email Popup ──
+function closePopup() {
+  document.getElementById('emailPopup').classList.remove('show');
+  try { sessionStorage.setItem('efPopupSeen','1'); } catch(e){}
+}
+function submitPopup(e) {
+  e.preventDefault();
+  // TODO: replace the action below with your Formspree or email service URL
+  var form = document.getElementById('popupForm');
+  var endpoint = form.getAttribute('data-action');
+  if (endpoint) {
+    var data = new FormData(form);
+    fetch(endpoint, {method:'POST', body:data, headers:{'Accept':'application/json'}})
+      .then(function(){ showPopupSuccess(); })
+      .catch(function(){ showPopupSuccess(); }); // still show success
+  } else {
+    showPopupSuccess(); // no endpoint yet — just show thank you
+  }
+}
+function showPopupSuccess() {
+  document.getElementById('popupForm').style.display = 'none';
+  document.querySelector('.popup-skip').style.display = 'none';
+  document.getElementById('popupSuccess').style.display = 'block';
+  setTimeout(closePopup, 2200);
+}
+// Show popup after 3s, once per session
+setTimeout(function() {
+  try { if (sessionStorage.getItem('efPopupSeen')) return; } catch(e){}
+  document.getElementById('emailPopup').classList.add('show');
+}, 3000);
+
 window.addEventListener('DOMContentLoaded', initImages);
 </script>
+
+<!-- Email Signup Popup -->
+<div class="popup-overlay" id="emailPopup">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closePopup()" aria-label="Close">&times;</button>
+    <p class="popup-eyebrow">Everything Fudge &middot; Rigby, Idaho</p>
+    <h2 class="popup-headline">Handmade fudge,<br><em>delivered to you.</em></h2>
+    <p class="popup-sub">Sign up for early access to new flavors, seasonal releases, and wholesale offers.</p>
+    <form class="popup-form" id="popupForm" onsubmit="submitPopup(event)">
+      <input type="text"  name="name"  placeholder="Your name"  required autocomplete="name"/>
+      <input type="email" name="email" placeholder="Email address" required autocomplete="email"/>
+      <button type="submit" class="popup-btn">Get Updates</button>
+    </form>
+    <p class="popup-success" id="popupSuccess">Thank you &mdash; we&rsquo;ll be in touch.</p>
+    <button class="popup-skip" onclick="closePopup()">No thanks</button>
+  </div>
+</div>
+
 </body>
 </html>
