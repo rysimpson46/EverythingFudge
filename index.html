@@ -24,8 +24,8 @@ body{font-family:var(--ui);background:var(--white);color:var(--ink);font-size:15
 nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:var(--nav-h);background:rgba(250,247,242,0);transition:background .35s,border-color .35s;border-bottom:1px solid transparent}
 nav.solid{background:rgba(250,247,242,0.97);border-bottom:var(--rule)}
 .nav-logo-link{display:flex;align-items:center;cursor:pointer;flex-shrink:0}
-.nav-logo{height:52px;width:auto;transition:height .25s}
-nav.solid .nav-logo{height:40px}
+.nav-logo{height:66px;width:auto;transition:height .25s}
+nav.solid .nav-logo{height:50px}
 .nav-links{list-style:none;display:flex;gap:2rem}
 .nav-links a{font-family:var(--ui);font-size:.68rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--espresso);text-decoration:none;opacity:.7;transition:opacity .2s;cursor:pointer}
 .nav-links a:hover{opacity:1}
@@ -514,18 +514,13 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
               <div class="pkg-card-desc">Two slabs wrapped together in a clean white band with the gold EF monogram. Understated and elegant.</div>
               <div class="pkg-card-price">$28</div>
             </div>
-            <div class="pkg-card" id="pkg2" onclick="pickPkg(2,'The Grand Terrace',58)">
+            <div class="pkg-card" id="pkg2" onclick="pickPkg(2,'The Grand Terrace',55)">
               <div class="pkg-card-name">The Grand Terrace</div>
-              <div class="pkg-card-sub">1&frac12; lbs &middot; All four flavors &middot; White gift box</div>
-              <div class="pkg-card-desc">Hand-sliced pieces across all four flavors in a white box with a clear lid, gold ribbon alongside. Gift-ready from the moment it arrives.</div>
+              <div class="pkg-card-sub">Gift Set &middot; 1&frac12; lbs &middot; All Four Flavors &middot; $55</div>
+              <div class="pkg-card-desc">All four flavors. One beautiful box. Hand-sliced pieces in a white gift box with a clear lid and gold ribbon. Gift-ready from the moment it arrives.</div>
               <div class="pkg-card-price">$55</div>
             </div>
-            <div class="pkg-card" id="pkg3" onclick="pickPkg(3,'The Bulk Slab',80)">
-              <div class="pkg-card-name">The Bulk Slab</div>
-              <div class="pkg-card-sub">1 lb slab &middot; Single flavor &middot; Uncut</div>
-              <div class="pkg-card-desc">A full pound of one flavor, hand-poured and uncut. For the serious fan or a big occasion.</div>
-              <div class="pkg-card-price">$80</div>
-            </div>
+
           </div>
         </div>
 
@@ -730,7 +725,7 @@ var FLAVOR_PHOTOS = {
   'Madison River Swirl':['swirlSlab',    'swirlWrapped',   'swirlBag'],
   'Alpine Sea Salt':    ['saltSlab',     'saltWrapped',     'saltBag'],
   'Piedmont Peanut':    ['peanutSlab',   'peanutWrapped',  'peanutBag'],
-  'all':                ['box',          'classicBag',     'swirlBag']
+  'all':                ['box',          null,             null]
 };
 
 var FLAVOR_NAME = {
@@ -738,21 +733,21 @@ var FLAVOR_NAME = {
   'Madison River Swirl':'Madison River <em>Swirl</em>',
   'Alpine Sea Salt':    'Alpine <em>Sea Salt</em>',
   'Piedmont Peanut':    'Roasted <em>Piedmont Peanut</em>',
-  'all':                'Office <em>Gift Sets</em>'
+  'all':                'A pound and a half of hand-sliced Everything Fudge — Heritage Classic, Madison River Swirl, Alpine Sea Salt, and Piedmont Peanut — arranged together in a white gift box with a clear lid so every piece is visible before it is even opened. Finished with a gold ribbon tied around the box — gift-ready from the moment it arrives. This is our signature gift. The one that arrives and stops the room. Perfect for employee appreciation, holiday gifting, client thank-yous, and anyone who deserves something genuinely handmade.'
 };
 var FLAVOR_TAGLINE = {
   'Heritage Classic':   'Velvet-smooth dark cocoa, slow-tempered until it is exactly right.',
   'Madison River Swirl':'Dark chocolate folded with golden caramel in long, unhurried ribbons.',
   'Alpine Sea Salt':    'Milk chocolate finished with a measured hand of flaked sea salt.',
   'Piedmont Peanut':    'Whole roasted peanuts folded into a rich fudge base, lightly salted.',
-  'all':                'The Grand Terrace &mdash; our signature gift for teams, clients, and every occasion that deserves something real.'
+  'all':                'A pound and a half of hand-sliced Everything Fudge — Heritage Classic, Madison River Swirl, Alpine Sea Salt, and Piedmont Peanut — arranged together in a white gift box with a clear lid so every piece is visible before it is even opened. Finished with a gold ribbon tied around the box — gift-ready from the moment it arrives. This is our signature gift. The one that arrives and stops the room. Perfect for employee appreciation, holiday gifting, client thank-yous, and anyone who deserves something genuinely handmade.'
 };
 var FLAVOR_DESC = {
   'Heritage Classic':   'Made with real butter, real cream, and premium dark cocoa. Cooked to temperature by hand and poured into slabs the same way since 2017. Pure and unfussy.',
   'Madison River Swirl':'Two things that belong together. Dark cocoa fudge swirled with ribbon caramel before it sets — every piece looks and tastes different. A perennial favorite.',
   'Alpine Sea Salt':    'Creamy milk chocolate fudge, lighter and rounder than the Classic, finished with hand-scattered flaked sea salt. The contrast is the point.',
   'Piedmont Peanut':    'A rich fudge base loaded with whole roasted peanuts. Salty, nutty, deeply satisfying. The one people always ask us to make more of.',
-  'all':                'A pound and a half of hand-sliced Everything Fudge \u2014 Heritage Classic, Madison River Swirl, Alpine Sea Salt, and Piedmont Peanut \u2014 arranged in a white gift box with a clear lid so every piece is visible before it is even opened. Finished with a gold ribbon tied around the box. This is our signature gift. The one that arrives and stops the room. Perfect for employee appreciation, holiday gifting, client thank-yous, and anyone who deserves something genuinely handmade. Hand-finished in Rigby, Idaho since 2017 \u00b7 100% of profits support local food pantries in Jefferson County.'
+  'all':                'A pound and a half of hand-sliced Everything Fudge — Heritage Classic, Madison River Swirl, Alpine Sea Salt, and Piedmont Peanut — arranged together in a white gift box with a clear lid so every piece is visible before it is even opened. Finished with a gold ribbon tied around the box — gift-ready from the moment it arrives. This is our signature gift. The one that arrives and stops the room. Perfect for employee appreciation, holiday gifting, client thank-yous, and anyone who deserves something genuinely handmade.'
 };
 
 // ── Nav ──
@@ -803,15 +798,28 @@ function updateShopDisplay(f) {
   var photos = FLAVOR_PHOTOS[f] || FLAVOR_PHOTOS['Heritage Classic'];
   // Main image
   document.getElementById('pdMainImg').src = IMG[photos[0]];
-  // Thumbnails
+  // Thumbnails — hide extras when null (e.g. Office Gift Sets only has 1 photo)
   for (var i = 0; i < 3; i++) {
     var el = document.getElementById('thumbImg' + i);
-    if (el) el.src = IMG[photos[i]] || IMG[photos[0]];
+    var thumb = document.getElementById('thumb' + i);
+    if (photos[i]) {
+      if (el) el.src = IMG[photos[i]];
+      if (thumb) thumb.style.display = '';
+    } else {
+      if (el) el.src = '';
+      if (thumb) thumb.style.display = 'none';
+    }
   }
   document.querySelectorAll('.pd-thumb').forEach(function(t){ t.classList.remove('active'); });
   var t0 = document.getElementById('thumb0');
   if (t0) t0.classList.add('active');
   document.getElementById('flavorSection').style.display = (f === 'all') ? 'none' : '';
+  // In Office Gift Sets tab, show only The Grand Terrace package
+  var isGift = (f === 'all');
+  ['pkg0','pkg1'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.style.display = isGift ? 'none' : '';
+  });
 }
 
 function showFlavor(f, btn) {
