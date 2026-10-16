@@ -16,21 +16,23 @@
   --display:'Cormorant Garamond',Georgia,serif;
   --ui:'Jost',system-ui,sans-serif;
   --rule:1px solid #d8cfc4;
-  --nav-h:60px;
+  --nav-h:120px;
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--ui);background:var(--white);color:var(--ink);font-size:15px;line-height:1.65;overflow-x:hidden}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:var(--nav-h);background:rgba(250,247,242,0);transition:background .35s,border-color .35s;border-bottom:1px solid transparent}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.6rem 2.5rem .5rem;height:auto;background:rgba(250,247,242,0);transition:background .35s,border-color .35s,padding .25s;border-bottom:1px solid transparent}
 nav.solid{background:rgba(250,247,242,0.97);border-bottom:var(--rule)}
-.nav-logo-link{display:flex;align-items:center;cursor:pointer;flex-shrink:0}
+.nav-logo-link{display:flex;flex-direction:column;align-items:center;cursor:pointer;text-decoration:none;gap:.2rem}
 .nav-logo{height:66px;width:auto;transition:height .25s}
-nav.solid .nav-logo{height:50px}
-.nav-links{list-style:none;display:flex;gap:2rem}
+nav.solid .nav-logo{height:46px}
+.nav-wordmark{font-family:var(--display);font-size:1.05rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--espresso);line-height:1;transition:font-size .25s}
+nav.solid .nav-wordmark{font-size:.88rem}
+.nav-links{list-style:none;display:flex;gap:2rem;margin-top:.35rem}
 .nav-links a{font-family:var(--ui);font-size:.68rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--espresso);text-decoration:none;opacity:.7;transition:opacity .2s;cursor:pointer}
 .nav-links a:hover{opacity:1}
-.nav-cta{font-family:var(--ui);font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white);background:var(--espresso);padding:.5rem 1.4rem;cursor:pointer;border:none;transition:background .2s}
+.nav-cta{display:none}
 .nav-cta:hover{background:var(--mocha)}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.3rem}
 .nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--espresso);transition:transform .25s,opacity .25s}
@@ -244,8 +246,11 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
 /* ═══ MOBILE ≤768px ═══ */
 @media(max-width:768px){
   :root{--nav-h:56px}
-  .nav-links,.nav-cta{display:none}
-  .nav-hamburger{display:flex}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex;position:absolute;right:1.5rem;top:50%}
+  nav{padding:.5rem 1rem .4rem;align-items:center}
+  .nav-logo{height:50px}
+  nav.solid .nav-logo{height:40px}
   nav{padding:0 1.25rem}
   .hero{grid-template-columns:1fr;height:auto;min-height:0;padding-top:var(--nav-h)}
   .hero-right{display:none}
@@ -361,6 +366,7 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
 <nav id="nav">
   <a class="nav-logo-link" onclick="go('home')">
     <img class="nav-logo" id="navLogo" alt="Everything Fudge"/>
+    <span class="nav-wordmark">Everything Fudge</span>
   </a>
   <ul class="nav-links">
     <li><a onclick="go('shop')">Shop</a></li>
@@ -368,7 +374,6 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
     <li><a onclick="go('about')">About</a></li>
     <li><a onclick="go('contact')">Contact</a></li>
   </ul>
-  <button class="nav-cta" onclick="go('shop')">Order</button>
   <button class="nav-hamburger" id="hamburger" onclick="toggleDrawer()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
