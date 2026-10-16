@@ -122,73 +122,61 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
 .ft-copy{font-family:var(--ui);font-size:.62rem;font-weight:300;color:var(--stone);opacity:.3}
 
 /* ═══ SHOP ═══ */
-.shop-page{min-height:100vh;padding-top:var(--nav-h)}
-.cat-bar{border-bottom:var(--rule);background:var(--white);position:sticky;top:var(--nav-h);z-index:100}
-.cat-bar-inner{display:flex;align-items:center;padding:0 4.5rem;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
-.cat-bar-inner::-webkit-scrollbar{display:none}
-.cat-btn{font-family:var(--ui);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--espresso);opacity:.6;background:none;border:none;border-bottom:2px solid transparent;padding:.85rem 1.2rem;cursor:pointer;white-space:nowrap;transition:opacity .2s,border-color .2s}
-.cat-btn:hover{opacity:1}
-.cat-btn.active{opacity:1;border-bottom:2px solid var(--espresso)}
+/* ── WHOLESALE ORDER PAGE ── */
+.order-page{min-height:100vh;padding-top:var(--nav-h)}
+.order-hero{display:grid;grid-template-columns:1fr 1fr;min-height:52vh;border-bottom:var(--rule)}
+.order-hero-txt{padding:6rem 4.5rem 4rem;display:flex;flex-direction:column;justify-content:center}
+.order-hero-eye{font-family:var(--ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mocha);margin-bottom:1rem}
+.order-hero-txt h1{font-family:var(--display);font-size:clamp(2.2rem,3.5vw,3.4rem);font-weight:300;line-height:1.1;color:var(--ink);margin-bottom:1.4rem}
+.order-hero-txt h1 em{font-style:italic;color:var(--mocha)}
+.order-hero-txt p{font-size:.87rem;font-weight:300;line-height:1.9;color:var(--espresso);opacity:.85;max-width:420px}
+.order-minimums{display:flex;gap:0;border-top:var(--rule);margin-top:2.5rem}
+.order-min-item{flex:1;padding:1.2rem 0;border-right:var(--rule)}
+.order-min-item:last-child{border-right:none}
+.order-min-item:first-child{padding-left:0}
+.order-min-num{font-family:var(--display);font-size:1.6rem;font-weight:300;color:var(--ink);line-height:1}
+.order-min-label{font-family:var(--ui);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mocha);opacity:.7;margin-top:.3rem}
+.order-hero-img{background:var(--cream);overflow:hidden}
+.order-hero-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
 
-/* Product detail: sticky photo left, panel right */
-.product-detail{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 120px)}
+/* Packages reference strip */
+.order-packages{padding:4rem 4.5rem;border-bottom:var(--rule);background:var(--ivory)}
+.order-packages-eye{font-family:var(--ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mocha);margin-bottom:1.4rem}
+.order-pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.order-pkg-card{background:var(--white);border:var(--rule);padding:1.4rem 1.5rem 1.6rem}
+.order-pkg-name{font-family:var(--display);font-size:1.05rem;font-weight:500;color:var(--ink);margin-bottom:.2rem}
+.order-pkg-sub{font-family:var(--ui);font-size:.66rem;font-weight:300;color:var(--mocha);letter-spacing:.06em;margin-bottom:.65rem}
+.order-pkg-desc{font-size:.8rem;font-weight:300;line-height:1.75;color:var(--espresso);opacity:.75;margin-bottom:.75rem}
+.order-pkg-price{font-family:var(--display);font-size:1.2rem;font-weight:400;color:var(--espresso)}
 
-/* Gallery column */
-.pd-gallery{position:sticky;top:calc(var(--nav-h) + 45px);height:calc(100vh - var(--nav-h) - 45px);display:flex;flex-direction:column;background:var(--cream);overflow:hidden}
-.pd-gallery-main{flex:1;overflow:hidden;position:relative}
-.pd-gallery-main img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:opacity .25s}
-.pd-gallery-main img.fade{opacity:0}
+/* Inquiry form */
+.order-form-wrap{display:grid;grid-template-columns:1fr 1fr;min-height:60vh}
+.order-form-col{padding:5rem 4.5rem 6rem;border-right:var(--rule)}
+.order-form-col h2{font-family:var(--display);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:300;color:var(--ink);margin-bottom:.6rem;line-height:1.1}
+.order-form-col h2 em{font-style:italic;color:var(--mocha)}
+.order-form-col>p{font-size:.82rem;font-weight:300;line-height:1.8;color:var(--espresso);opacity:.7;margin-bottom:2.5rem;max-width:360px}
+.order-aside{padding:5rem 4rem 6rem;background:var(--ivory);display:flex;flex-direction:column;gap:2.5rem}
+.order-aside-item{}
+.order-aside-label{font-family:var(--ui);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mocha);margin-bottom:.35rem}
+.order-aside-val{font-family:var(--display);font-style:italic;font-size:1rem;color:var(--ink);line-height:1.5}
+.order-aside-note{font-size:.8rem;font-weight:300;line-height:1.8;color:var(--espresso);opacity:.7;margin-top:.3rem}
 
-/* Thumbnail strip */
-.pd-thumbs{display:flex;gap:5px;padding:.7rem 1rem;background:var(--cream);flex-shrink:0}
-.pd-thumb{width:58px;height:58px;border:2px solid transparent;cursor:pointer;overflow:hidden;background:var(--stone);transition:border-color .2s;flex-shrink:0}
-.pd-thumb.active{border-color:var(--espresso)}
-.pd-thumb img{width:100%;height:100%;object-fit:cover;object-position:center top}
-
-/* Order panel */
-.pd-panel{padding:3rem 3.5rem 5rem;display:flex;flex-direction:column;gap:1.6rem;background:var(--white);overflow-y:auto}
-.pd-eyebrow{font-family:var(--ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mocha)}
-.pd-name{font-family:var(--display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.05;color:var(--ink)}
-.pd-name em{font-style:italic;color:var(--mocha)}
-.pd-tagline{font-family:var(--display);font-style:italic;font-size:1rem;color:var(--mocha);font-weight:300;line-height:1.5}
-.pd-wholesale{font-family:var(--ui);font-size:.67rem;font-weight:400;letter-spacing:.08em;color:var(--mocha);opacity:.75;border-left:2px solid var(--bark);padding-left:.75rem;line-height:1.55}
-    .pd-desc{font-size:.85rem;font-weight:300;line-height:1.9;color:var(--espresso);opacity:.85}
-.pd-rule{width:100%;height:1px;background:var(--stone)}
-
-/* Package cards */
-.pkg-label{font-family:var(--ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mocha);margin-bottom:.85rem}
-.pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-.pkg-card{border:1.5px solid var(--stone);padding:1rem 1.1rem 1.1rem;cursor:pointer;background:var(--white);transition:border-color .2s,background .2s;position:relative}
-.pkg-card:hover{border-color:var(--bark);background:var(--cream)}
-.pkg-card.on{border-color:var(--espresso);background:var(--cream)}
-.pkg-card.on::after{content:'✓';position:absolute;top:.55rem;right:.75rem;font-size:.7rem;color:var(--espresso)}
-.pkg-card-name{font-family:var(--display);font-size:.95rem;font-weight:500;color:var(--ink);margin-bottom:.15rem}
-.pkg-card-sub{font-family:var(--ui);font-size:.68rem;font-weight:300;color:var(--mocha);line-height:1.4;margin-bottom:.5rem}
-.pkg-card-desc{font-family:var(--ui);font-size:.67rem;font-weight:300;color:var(--espresso);opacity:.65;line-height:1.5;margin-bottom:.55rem}
-.pkg-card-price{font-family:var(--display);font-size:1rem;font-weight:500;color:var(--espresso)}
-
-/* Flavor chips */
-.flavor-label{font-family:var(--ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mocha);margin-bottom:.85rem}
-.flavor-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.flavor-chip{border:1.5px solid var(--stone);padding:.65rem .9rem;cursor:pointer;font-family:var(--display);font-size:.92rem;font-style:italic;color:var(--espresso);background:var(--white);transition:border-color .2s,background .2s;text-align:left;width:100%}
-.flavor-chip:hover{border-color:var(--bark);background:var(--cream)}
-.flavor-chip.on{border-color:var(--espresso);background:var(--cream);color:var(--ink)}
-
-/* Qty + CTA */
-.qty-row{display:flex;align-items:center;gap:.85rem}
-.qty-ctrl{display:flex;align-items:stretch;border:var(--rule);flex-shrink:0}
-.qty-btn-ctrl{background:none;border:none;width:2.6rem;color:var(--mocha);font-size:1.1rem;cursor:pointer;font-family:var(--ui);transition:background .15s}
-.qty-btn-ctrl:hover{background:var(--ivory)}
-.qty-num{width:2.8rem;text-align:center;background:var(--white);border:none;border-left:var(--rule);border-right:var(--rule);color:var(--ink);font-family:var(--display);font-size:1rem;outline:none}
-.add-btn{flex:1;background:var(--espresso);color:var(--white);border:none;font-family:var(--ui);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:0 1.5rem;cursor:pointer;transition:background .2s;height:46px;min-width:0}
-.add-btn:hover{background:var(--mocha)}
-
-/* Summary strip */
-.summary-strip{background:var(--ivory);border:var(--rule);padding:1rem 1.1rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
-.summary-strip-label{font-family:var(--ui);font-size:.76rem;font-weight:300;color:var(--espresso);opacity:.8;min-width:0;line-height:1.45}
-.summary-strip-label strong{font-weight:400;color:var(--ink)}
-.summary-strip-price{font-family:var(--display);font-size:1.5rem;font-weight:400;color:var(--ink);flex-shrink:0}
-.warn-note{font-family:var(--ui);font-size:.73rem;font-weight:300;color:var(--mocha);padding:.5rem .75rem;background:var(--ivory);border:1px solid var(--stone);display:none}
+/* Form fields — reuse contact styles but scoped */
+.order-field{margin-bottom:1.2rem}
+.order-field label{display:block;font-family:var(--ui);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mocha);margin-bottom:.4rem}
+.order-field input,.order-field textarea,.order-field select{width:100%;background:var(--white);border:var(--rule);color:var(--ink);font-family:var(--ui);font-size:.87rem;font-weight:300;padding:.7rem .9rem;outline:none;transition:border-color .2s;-webkit-appearance:none;border-radius:0}
+.order-field select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238b6f47'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;padding-right:2.2rem}
+.order-field input::placeholder,.order-field textarea::placeholder{color:var(--bark);opacity:.45}
+.order-field input:focus,.order-field textarea:focus,.order-field select:focus{border-color:var(--mocha)}
+.order-field textarea{resize:vertical;min-height:80px}
+.order-field-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.order-submit{width:100%;background:var(--espresso);color:var(--white);font-family:var(--ui);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;padding:1.1rem 2rem;border:none;cursor:pointer;transition:background .2s;margin-top:.6rem}
+.order-submit:hover{background:var(--mocha)}
+.order-fine{font-family:var(--ui);font-size:.68rem;font-weight:300;color:var(--bark);line-height:1.6;margin-top:.8rem;opacity:.8}
+.order-success{display:none;text-align:center;padding:3rem 1rem}
+.order-success-title{font-family:var(--display);font-size:2rem;font-weight:300;color:var(--ink);margin-bottom:.75rem}
+.order-success-title em{font-style:italic;color:var(--mocha)}
+.order-success p{font-size:.85rem;font-weight:300;line-height:1.8;color:var(--espresso);opacity:.8}
 
 /* Accordion */
 .detail-item{border-top:var(--rule)}
@@ -271,22 +259,18 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
   .craft-txt{padding:3.5rem 1.5rem}
   footer{padding:2rem 1.5rem;flex-direction:column;gap:1.25rem;text-align:center}
   .ft-nav{justify-content:center}
-  /* Shop */
-  .shop-page{padding-top:var(--nav-h)}
-  .cat-bar-inner{padding:0 .75rem}
-  .cat-btn{padding:.7rem .8rem;font-size:.6rem}
-  .product-detail{grid-template-columns:1fr}
-  .pd-gallery{position:relative;top:0;height:auto;flex-direction:column}
-  .pd-gallery-main{width:100%;height:72vw;max-height:400px;flex:none}
-  .pd-thumbs{padding:.6rem .75rem;gap:4px}
-  .pd-thumb{width:48px;height:48px}
-  .pd-panel{padding:1.75rem 1.25rem 3.5rem;gap:1.25rem}
-  .pd-name{font-size:1.8rem}
-  .pkg-grid{grid-template-columns:1fr}
-  .flavor-grid{grid-template-columns:1fr 1fr}
-  .qty-row{flex-wrap:wrap}
-  .add-btn{flex:none;width:100%;padding:.85rem;height:auto}
-  .summary-strip{flex-direction:column;align-items:flex-start;gap:.35rem}
+  /* Order */
+  .order-hero{grid-template-columns:1fr}
+  .order-hero-img{display:none}
+  .order-hero-txt{padding:4rem 1.5rem 2.5rem}
+  .order-minimums{flex-wrap:wrap}
+  .order-min-item{min-width:40%;border-right:none;border-bottom:var(--rule);padding:.9rem 0}
+  .order-packages{padding:2.5rem 1.5rem}
+  .order-pkg-grid{grid-template-columns:1fr}
+  .order-form-wrap{grid-template-columns:1fr}
+  .order-form-col{padding:3rem 1.5rem 4rem;border-right:none;border-bottom:var(--rule)}
+  .order-aside{padding:2.5rem 1.5rem 4rem}
+  .order-field-row{grid-template-columns:1fr}
   /* Gallery */
   .gallery-hdr{padding:6rem 1.5rem 2.5rem}
   .gallery-canvas{grid-template-columns:1fr 1fr;grid-template-rows:auto;padding:0 1.5rem 4rem;gap:3px}
@@ -369,7 +353,7 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
     <span class="nav-wordmark">Everything Fudge</span>
   </a>
   <ul class="nav-links">
-    <li><a onclick="go('shop')">Shop</a></li>
+    <li><a onclick="go('shop')">Order</a></li>
     <li><a onclick="go('gallery')">Gallery</a></li>
     <li><a onclick="go('about')">About</a></li>
     <li><a onclick="go('contact')">Contact</a></li>
@@ -381,7 +365,7 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
 
 <!-- MOBILE DRAWER -->
 <div class="nav-drawer" id="navDrawer">
-  <a onclick="go('shop');closeDrawer()">Shop</a>
+  <a onclick="go('shop');closeDrawer()">Order</a>
   <a onclick="go('gallery');closeDrawer()">Gallery</a>
   <a onclick="go('about');closeDrawer()">About</a>
   <a onclick="go('contact');closeDrawer()">Contact</a>
@@ -398,7 +382,7 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
       <p class="hero-sub">Real butter. Real cream. Cooked and cut by hand — the same way since the first batch in 2017.</p>
       <p class="hero-mission">Everything Fudge was born from a simple belief &mdash; that the finest ingredients, made by hand, can do more than delight. They can feed a neighbor. <strong>100% of our profits go directly to local food pantries in Jefferson County.</strong></p>
       <div class="hero-btns">
-        <button class="btn-fill" onclick="go('shop')">Shop now</button>
+        <button class="btn-fill" onclick="go('shop')">Place an order</button>
         <button class="btn-text" onclick="go('about')">Our story</button>
       </div>
     </div>
@@ -428,7 +412,7 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
   <div class="products">
     <div class="sec-hdr">
       <span class="sec-title">The Flavors</span>
-      <button class="sec-link" onclick="go('shop')">Shop all &rarr;</button>
+      <button class="sec-link" onclick="go('shop')">Place an order &rarr;</button>
     </div>
     <div class="product-grid">
       <div class="pcard" onclick="goShop('Heritage Classic')">
@@ -483,7 +467,7 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
   <footer>
     <img class="ft-logo" id="ftLogo" alt="Everything Fudge"/>
     <ul class="ft-nav">
-      <li><a onclick="go('shop')">Shop</a></li>
+      <li><a onclick="go('shop')">Order</a></li>
       <li><a onclick="go('gallery')">Gallery</a></li>
       <li><a onclick="go('about')">About</a></li>
       <li><a onclick="go('contact')">Contact</a></li>
@@ -494,112 +478,166 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
 
 <!-- SHOP -->
 <div id="page-shop" class="page">
-  <div class="shop-page">
-    <div class="cat-bar"><div class="cat-bar-inner">
-      <button class="cat-btn active" onclick="showFlavor('Heritage Classic',this)">Heritage Classic</button>
-      <button class="cat-btn" onclick="showFlavor('Madison River Swirl',this)">Madison River Swirl</button>
-      <button class="cat-btn" onclick="showFlavor('Alpine Sea Salt',this)">Alpine Sea Salt</button>
-      <button class="cat-btn" onclick="showFlavor('Piedmont Peanut',this)">Piedmont Peanut</button>
-      <button class="cat-btn" onclick="showFlavor('all',this)">Office Gift Sets</button>
-    </div></div>
+  <div class="order-page">
 
-    <div class="product-detail">
-      <!-- Photo column -->
-      <div class="pd-gallery">
-        <div class="pd-gallery-main"><img id="pdMainImg" alt=""/></div>
-        <div class="pd-thumbs">
-          <div class="pd-thumb active" id="thumb0" onclick="swapThumb(0)"><img id="thumbImg0" alt=""/></div>
-          <div class="pd-thumb"        id="thumb1" onclick="swapThumb(1)"><img id="thumbImg1" alt=""/></div>
-          <div class="pd-thumb"        id="thumb2" onclick="swapThumb(2)"><img id="thumbImg2" alt=""/></div>
+    <!-- Hero: intro + stats -->
+    <div class="order-hero">
+      <div class="order-hero-txt">
+        <p class="order-hero-eye">Everything Fudge &middot; Wholesale</p>
+        <h1>Handmade fudge,<br><em>made for your people.</em></h1>
+        <p>We work directly with businesses, event planners, and corporate gifting buyers. Every order is made fresh to your timeline. No middlemen, no minimums you can&rsquo;t meet &mdash; just real fudge, beautifully packaged.</p>
+        <div class="order-minimums">
+          <div class="order-min-item">
+            <div class="order-min-num">$100</div>
+            <div class="order-min-label">Minimum order</div>
+          </div>
+          <div class="order-min-item" style="padding-left:2rem">
+            <div class="order-min-num">2 wks</div>
+            <div class="order-min-label">Lead time</div>
+          </div>
+          <div class="order-min-item" style="padding-left:2rem">
+            <div class="order-min-num">4</div>
+            <div class="order-min-label">Flavors available</div>
+          </div>
         </div>
       </div>
+      <div class="order-hero-img"><img id="orderHeroImg" alt="Everything Fudge — handmade in Rigby, Idaho"/></div>
+    </div>
 
-      <!-- Order column -->
-      <div class="pd-panel">
-        <div>
-          <p class="pd-eyebrow">Everything Fudge &middot; Handmade</p>
-          <h1 class="pd-name" id="pdName">The Heritage <em>Classic</em></h1>
+    <!-- Package reference -->
+    <div class="order-packages">
+      <p class="order-packages-eye">Our packages</p>
+      <div class="order-pkg-grid">
+        <div class="order-pkg-card">
+          <div class="order-pkg-name">The Soloist</div>
+          <div class="order-pkg-sub">Half-pound slab &middot; Single flavor</div>
+          <div class="order-pkg-desc">Wrapped in clear cellophane and tied with a gold satin ribbon. One flavor, beautifully presented. Perfect for individual gifting.</div>
+          <div class="order-pkg-price">$18 <span style="font-family:var(--ui);font-size:.65rem;opacity:.6">/ unit</span></div>
         </div>
-        <p class="pd-tagline" id="pdTagline"></p>
-        <p class="pd-desc"    id="pdDesc"></p>
-        <p class="pd-wholesale">Wholesale only &middot; Minimum order $100 &middot; Available for corporate gifting, employee appreciation, and seasonal gifting.</p>
-        <div class="pd-rule"></div>
-
-        <div>
-          <p class="pkg-label">Choose your package</p>
-          <div class="pkg-grid">
-            <div class="pkg-card" id="pkg0" onclick="pickPkg(0,'The Soloist',18)">
-              <div class="pkg-card-name">The Soloist</div>
-              <div class="pkg-card-sub">Half-pound slab &middot; Single flavor</div>
-              <div class="pkg-card-desc">Wrapped in clear cellophane and tied with a gold satin ribbon. One flavor, beautifully presented.</div>
-              <div class="pkg-card-price">$18</div>
-            </div>
-            <div class="pkg-card" id="pkg1" onclick="pickPkg(1,'The Rigby Duo',32)">
-              <div class="pkg-card-name">The Rigby Duo</div>
-              <div class="pkg-card-sub">Two quarter-pound slabs &middot; Your chosen flavor</div>
-              <div class="pkg-card-desc">Two slabs wrapped together in a clean white band with the gold EF monogram. Understated and elegant.</div>
-              <div class="pkg-card-price">$28</div>
-            </div>
-            <div class="pkg-card" id="pkg2" onclick="pickPkg(2,'The Grand Terrace',55)">
-              <div class="pkg-card-name">The Grand Terrace</div>
-              <div class="pkg-card-sub">Gift Set &middot; 1&frac12; lbs &middot; All Four Flavors &middot; $55</div>
-              <div class="pkg-card-desc">All four flavors. One beautiful box. Hand-sliced pieces in a white gift box with a clear lid and gold ribbon. Gift-ready from the moment it arrives.</div>
-              <div class="pkg-card-price">$55</div>
-            </div>
-
-          </div>
+        <div class="order-pkg-card">
+          <div class="order-pkg-name">The Rigby Duo</div>
+          <div class="order-pkg-sub">Two quarter-pound slabs &middot; Your chosen flavor</div>
+          <div class="order-pkg-desc">Two slabs wrapped together in a clean white band with the gold EF monogram. Understated and elegant &mdash; ideal for pairs or partners.</div>
+          <div class="order-pkg-price">$28 <span style="font-family:var(--ui);font-size:.65rem;opacity:.6">/ unit</span></div>
         </div>
-
-        <div id="flavorSection">
-          <p class="flavor-label">Choose your flavor</p>
-          <div class="flavor-grid">
-            <button class="flavor-chip" id="fc0" onclick="pickFlavor(0,'Heritage Classic')">Heritage Classic</button>
-            <button class="flavor-chip" id="fc1" onclick="pickFlavor(1,'Madison River Swirl')">Madison River Swirl</button>
-            <button class="flavor-chip" id="fc2" onclick="pickFlavor(2,'Alpine Sea Salt')">Alpine Sea Salt</button>
-            <button class="flavor-chip" id="fc3" onclick="pickFlavor(3,'Piedmont Peanut')">Piedmont Peanut</button>
-          </div>
+        <div class="order-pkg-card">
+          <div class="order-pkg-name">The Grand Terrace</div>
+          <div class="order-pkg-sub">Gift Set &middot; 1&frac12; lbs &middot; All four flavors</div>
+          <div class="order-pkg-desc">All four flavors. One beautiful box. Hand-sliced pieces in a white gift box with a clear lid and gold ribbon. Gift-ready from the moment it arrives.</div>
+          <div class="order-pkg-price">$55 <span style="font-family:var(--ui);font-size:.65rem;opacity:.6">/ unit</span></div>
         </div>
-
-        <div>
-          <p class="pkg-label">Quantity</p>
-          <div class="qty-row">
-            <div class="qty-ctrl">
-              <button class="qty-btn-ctrl" onclick="adjQty(-1)">&#8722;</button>
-              <input class="qty-num" id="qtyNum" type="number" value="1" min="1" readonly/>
-              <button class="qty-btn-ctrl" onclick="adjQty(1)">&#43;</button>
-            </div>
-            <button class="add-btn" onclick="submitOrder()">Place order request &rarr;</button>
-          </div>
-          <div class="warn-note" id="minWarn">Minimum order is $100 — add more to continue.</div>
-        </div>
-
-        <div class="summary-strip" id="summaryStrip" style="display:none">
-          <div class="summary-strip-label" id="summaryDesc"></div>
-          <div class="summary-strip-price" id="summaryPrice"></div>
-        </div>
-
-        <div>
-          <div class="detail-item">
-            <button class="detail-toggle" onclick="toggleDetail(this)">Delivery &amp; pickup <span class="detail-chevron">&#9662;</span></button>
-            <div class="detail-body">Local delivery available in Rigby and Idaho Falls, Idaho only. We confirm all delivery details when we reach out to finalize your order.</div>
-          </div>
-          <div class="detail-item">
-            <button class="detail-toggle" onclick="toggleDetail(this)">Lead time <span class="detail-chevron">&#9662;</span></button>
-            <div class="detail-body">We make everything to order. Please allow at least two weeks notice. For holiday or event orders, three to four weeks is ideal. Rush orders may be available — just ask.</div>
-          </div>
-          <div class="detail-item">
-            <button class="detail-toggle" onclick="toggleDetail(this)">Ingredients &amp; allergens <span class="detail-chevron">&#9662;</span></button>
-            <div class="detail-body">All flavors contain butter, cream, and sugar. Heritage Classic contains no nuts. Madison River Swirl contains no nuts. Alpine Sea Salt contains dairy and flaked sea salt. Piedmont Peanut contains peanuts. Made in a kitchen that also handles tree nuts.</div>
-          </div>
-          <div class="detail-item">
-            <button class="detail-toggle" onclick="toggleDetail(this)">Wholesale &amp; custom orders <span class="detail-chevron">&#9662;</span></button>
-            <div class="detail-body">We work with restaurants, retailers, and event planners. Custom packaging, branded ribbons, and large-quantity pricing are available. Reach out through the contact page to start the conversation.</div>
-          </div>
-        </div>
-
-        <p style="font-family:var(--ui);font-size:.7rem;font-weight:300;color:var(--bark);line-height:1.7">No payment is taken here. After you submit, we will reach out personally to confirm your order and arrange payment.</p>
       </div>
     </div>
+
+    <!-- Inquiry form -->
+    <div class="order-form-wrap">
+      <div class="order-form-col">
+        <h2>Start your <em>order.</em></h2>
+        <p>Tell us about your order and we&rsquo;ll reach out within 24 hours to confirm details and arrange payment. No payment is taken here.</p>
+
+        <form id="orderForm" action="YOUR_FORMSPREE_ENDPOINT" method="POST" onsubmit="submitOrderForm(event)">
+          <div class="order-field-row">
+            <div class="order-field">
+              <label for="of-name">Your name</label>
+              <input type="text" id="of-name" name="name" placeholder="Jane Smith" required autocomplete="name"/>
+            </div>
+            <div class="order-field">
+              <label for="of-biz">Business name</label>
+              <input type="text" id="of-biz" name="business" placeholder="Acme Co." required/>
+            </div>
+          </div>
+          <div class="order-field-row">
+            <div class="order-field">
+              <label for="of-email">Email address</label>
+              <input type="email" id="of-email" name="email" placeholder="jane@acme.com" required autocomplete="email"/>
+            </div>
+            <div class="order-field">
+              <label for="of-phone">Phone (optional)</label>
+              <input type="tel" id="of-phone" name="phone" placeholder="(208) 555-0100" autocomplete="tel"/>
+            </div>
+          </div>
+          <div class="order-field">
+            <label for="of-type">Type of buyer</label>
+            <select id="of-type" name="buyer_type" required>
+              <option value="" disabled selected>Select one&hellip;</option>
+              <option>Restaurant or café</option>
+              <option>Retail shop</option>
+              <option>Corporate gifting</option>
+              <option>Event planner</option>
+              <option>Hotel or hospitality</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="order-field-row">
+            <div class="order-field">
+              <label for="of-pkg">Package interest</label>
+              <select id="of-pkg" name="package">
+                <option value="" disabled selected>Select one&hellip;</option>
+                <option>The Soloist — $18/unit</option>
+                <option>The Rigby Duo — $28/unit</option>
+                <option>The Grand Terrace — $55/unit</option>
+                <option>Mix of packages</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="order-field">
+              <label for="of-qty">Estimated quantity</label>
+              <select id="of-qty" name="quantity">
+                <option value="" disabled selected>Select range&hellip;</option>
+                <option>6–12 units</option>
+                <option>13–25 units</option>
+                <option>26–50 units</option>
+                <option>51–100 units</option>
+                <option>100+ units</option>
+              </select>
+            </div>
+          </div>
+          <div class="order-field">
+            <label for="of-date">Needed by (approximate)</label>
+            <input type="text" id="of-date" name="needed_by" placeholder="e.g. December 15, holiday party"/>
+          </div>
+          <div class="order-field">
+            <label for="of-notes">Anything else we should know?</label>
+            <textarea id="of-notes" name="notes" placeholder="Custom packaging, flavor preferences, delivery location, recurring orders&hellip;"></textarea>
+          </div>
+          <button type="submit" class="order-submit">Send order request &rarr;</button>
+          <p class="order-fine">No payment is collected here. We&rsquo;ll reach out personally within 24 hours to confirm your order and arrange next steps.</p>
+        </form>
+
+        <div class="order-success" id="orderSuccess">
+          <p class="order-success-title">Thank you &mdash; <em>we&rsquo;ll be in touch.</em></p>
+          <p>We received your inquiry and will reach out within 24 hours to confirm details and walk you through next steps. We appreciate your interest in Everything Fudge.</p>
+        </div>
+      </div>
+
+      <div class="order-aside">
+        <div class="order-aside-item">
+          <div class="order-aside-label">Lead time</div>
+          <div class="order-aside-val">2 weeks minimum</div>
+          <div class="order-aside-note">For holiday or event orders, three to four weeks is ideal. Rush orders may be available — just ask.</div>
+        </div>
+        <div class="order-aside-item">
+          <div class="order-aside-label">Delivery</div>
+          <div class="order-aside-val">Local to Rigby &amp; Idaho Falls</div>
+          <div class="order-aside-note">We confirm all delivery details when we reach out to finalize your order.</div>
+        </div>
+        <div class="order-aside-item">
+          <div class="order-aside-label">Custom options</div>
+          <div class="order-aside-val">Branded packaging available</div>
+          <div class="order-aside-note">Custom packaging, branded ribbons, and large-quantity pricing are all on the table. Just mention it in your inquiry.</div>
+        </div>
+        <div class="order-aside-item">
+          <div class="order-aside-label">Allergens</div>
+          <div class="order-aside-val">Made with butter &amp; cream</div>
+          <div class="order-aside-note">All flavors contain butter, cream, and sugar. Piedmont Peanut contains peanuts. Made in a kitchen that also handles tree nuts.</div>
+        </div>
+        <div class="order-aside-item">
+          <div class="order-aside-label">Contact us directly</div>
+          <div class="order-aside-val" style="font-style:normal;font-size:.88rem"><a onclick="go('contact')" style="color:var(--mocha);cursor:pointer;text-decoration:underline;text-underline-offset:3px">Open the contact page &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -740,41 +778,10 @@ function initImages() {
   // About: copper pot process shot
   document.getElementById('aboutImg').src = IMG.pot;
 
-  // Init shop with default flavor
-  updateShopDisplay('Heritage Classic');
+  // Wire order page hero image
+  var ohi = document.getElementById('orderHeroImg');
+  if (ohi && IMG.box) ohi.src = IMG.box;
 }
-
-// ── Flavor photo sets: [main, thumb1, thumb2] ──
-// Each flavor shows: slab (raw product), EF-wrapped block, bag with bow
-var FLAVOR_PHOTOS = {
-  'Heritage Classic':   ['classicSlab',  'classicWrapped', 'classicBag'],
-  'Madison River Swirl':['swirlSlab',    'swirlWrapped',   'swirlBag'],
-  'Alpine Sea Salt':    ['saltSlab',     'saltWrapped',     'saltBag'],
-  'Piedmont Peanut':    ['peanutSlab',   'peanutWrapped',  'peanutBag'],
-  'all':                ['box',          null,             null]
-};
-
-var FLAVOR_NAME = {
-  'Heritage Classic':   'The Heritage <em>Classic</em>',
-  'Madison River Swirl':'Madison River <em>Swirl</em>',
-  'Alpine Sea Salt':    'Alpine <em>Sea Salt</em>',
-  'Piedmont Peanut':    'Roasted <em>Piedmont Peanut</em>',
-  'all':                'Office <em>Gift Sets</em>'
-};
-var FLAVOR_TAGLINE = {
-  'Heritage Classic':   'Velvet-smooth dark cocoa, slow-tempered until it is exactly right.',
-  'Madison River Swirl':'Dark chocolate folded with golden caramel in long, unhurried ribbons.',
-  'Alpine Sea Salt':    'Milk chocolate finished with a measured hand of flaked sea salt.',
-  'Piedmont Peanut':    'Whole roasted peanuts folded into a rich fudge base, lightly salted.',
-  'all':                'The Grand Terrace — our signature gift for teams, clients, and every occasion that deserves something real.'
-};
-var FLAVOR_DESC = {
-  'Heritage Classic':   'Made with real butter, real cream, and premium dark cocoa. Cooked to temperature by hand and poured into slabs the same way since 2017. Pure and unfussy.',
-  'Madison River Swirl':'Two things that belong together. Dark cocoa fudge swirled with ribbon caramel before it sets — every piece looks and tastes different. A perennial favorite.',
-  'Alpine Sea Salt':    'Creamy milk chocolate fudge, lighter and rounder than the Classic, finished with hand-scattered flaked sea salt. The contrast is the point.',
-  'Piedmont Peanut':    'A rich fudge base loaded with whole roasted peanuts. Salty, nutty, deeply satisfying. The one people always ask us to make more of.',
-  'all':                'A pound and a half of hand-sliced Everything Fudge — Heritage Classic, Madison River Swirl, Alpine Sea Salt, and Piedmont Peanut — arranged together in a white gift box with a clear lid so every piece is visible before it is even opened. Finished with a gold ribbon tied around the box — gift-ready from the moment it arrives. This is our signature gift. The one that arrives and stops the room. Perfect for employee appreciation, holiday gifting, client thank-yous, and anyone who deserves something genuinely handmade.'
-};
 
 // ── Nav ──
 var navEl = document.getElementById('nav');
@@ -799,118 +806,28 @@ function go(name) {
   closeDrawer();
 }
 
-var pendingFlavor = 'Heritage Classic';
 function goShop(flavor) {
-  pendingFlavor = flavor;
   go('shop');
-  setTimeout(applyPendingFlavor, 60);
-}
-function applyPendingFlavor() {
-  var f = pendingFlavor;
-  document.querySelectorAll('.cat-btn').forEach(function(b) {
-    var lbl = b.textContent.trim();
-    b.classList.toggle('active', f === 'all' ? lbl === 'Gift Sets' : lbl === f);
-  });
-  showFlavor(f, null);
 }
 
-// ── Shop state ──
-var selPkg = null, selFlavor = 'Heritage Classic';
-
-function updateShopDisplay(f) {
-  document.getElementById('pdName').innerHTML      = FLAVOR_NAME[f]    || '';
-  document.getElementById('pdTagline').textContent = FLAVOR_TAGLINE[f] || '';
-  document.getElementById('pdDesc').textContent    = FLAVOR_DESC[f]    || '';
-  var photos = FLAVOR_PHOTOS[f] || FLAVOR_PHOTOS['Heritage Classic'];
-  // Main image
-  document.getElementById('pdMainImg').src = IMG[photos[0]];
-  // Thumbnails — hide extras when null (e.g. Office Gift Sets only has 1 photo)
-  for (var i = 0; i < 3; i++) {
-    var el = document.getElementById('thumbImg' + i);
-    var thumb = document.getElementById('thumb' + i);
-    if (photos[i]) {
-      if (el) el.src = IMG[photos[i]];
-      if (thumb) thumb.style.display = '';
-    } else {
-      if (el) el.src = '';
-      if (thumb) thumb.style.display = 'none';
-    }
+// ── Order inquiry form ──
+function submitOrderForm(e) {
+  e.preventDefault();
+  var form = document.getElementById('orderForm');
+  var endpoint = form.getAttribute('action');
+  if (!endpoint || endpoint === 'YOUR_FORMSPREE_ENDPOINT') {
+    // No endpoint yet — show success state anyway
+    showOrderSuccess();
+    return;
   }
-  document.querySelectorAll('.pd-thumb').forEach(function(t){ t.classList.remove('active'); });
-  var t0 = document.getElementById('thumb0');
-  if (t0) t0.classList.add('active');
-  document.getElementById('flavorSection').style.display = (f === 'all') ? 'none' : '';
-  // In Office Gift Sets tab, show only The Grand Terrace package
-  var isGift = (f === 'all');
-  ['pkg0','pkg1'].forEach(function(id){
-    var el = document.getElementById(id);
-    if (el) el.style.display = isGift ? 'none' : '';
-  });
+  var data = new FormData(form);
+  fetch(endpoint, {method:'POST', body:data, headers:{'Accept':'application/json'}})
+    .then(function(r){ showOrderSuccess(); })
+    .catch(function(){ showOrderSuccess(); });
 }
-
-function showFlavor(f, btn) {
-  if (btn) {
-    document.querySelectorAll('.cat-btn').forEach(function(b){ b.classList.remove('active'); });
-    btn.classList.add('active');
-  }
-  selFlavor = f;
-  updateShopDisplay(f);
-  recalc();
-}
-
-function swapThumb(idx) {
-  document.querySelectorAll('.pd-thumb').forEach(function(t){ t.classList.remove('active'); });
-  document.getElementById('thumb' + idx).classList.add('active');
-  document.getElementById('pdMainImg').src = document.getElementById('thumbImg' + idx).src;
-}
-
-function pickPkg(idx, name, price) {
-  document.querySelectorAll('.pkg-card').forEach(function(c){ c.classList.remove('on'); });
-  document.getElementById('pkg' + idx).classList.add('on');
-  selPkg = {name: name, price: price};
-  if (name === 'The Grand Terrace') {
-    selFlavor = 'all';
-    document.getElementById('flavorSection').style.display = 'none';
-    document.querySelectorAll('.flavor-chip').forEach(function(c){ c.classList.remove('on'); });
-  } else {
-    document.getElementById('flavorSection').style.display = '';
-  }
-  recalc();
-}
-
-function pickFlavor(idx, name) {
-  document.querySelectorAll('.flavor-chip').forEach(function(c){ c.classList.remove('on'); });
-  document.getElementById('fc' + idx).classList.add('on');
-  selFlavor = name;
-  updateShopDisplay(name);
-  recalc();
-}
-
-function adjQty(d) {
-  var el = document.getElementById('qtyNum');
-  el.value = Math.max(1, parseInt(el.value || 1) + d);
-  recalc();
-}
-
-function recalc() {
-  var qty   = parseInt(document.getElementById('qtyNum').value || 1);
-  var strip = document.getElementById('summaryStrip');
-  var warn  = document.getElementById('minWarn');
-  if (!selPkg) { strip.style.display='none'; if(warn) warn.style.display='none'; return; }
-  var total = selPkg.price * qty;
-  var flv   = (selFlavor && selFlavor !== 'all') ? selFlavor : 'All flavors';
-  document.getElementById('summaryDesc').innerHTML = '<strong>' + selPkg.name + '</strong> &middot; ' + flv + ' &middot; qty ' + qty;
-  document.getElementById('summaryPrice').textContent = '$' + total;
-  strip.style.display = 'flex';
-  if (warn) warn.style.display = total < 100 ? 'block' : 'none';
-}
-
-function submitOrder() {
-  if (!selPkg) { alert('Please choose a package first.'); return; }
-  var qty   = parseInt(document.getElementById('qtyNum').value || 1);
-  var total = selPkg.price * qty;
-  if (total < 100) { alert('Minimum order is $100. Try adding more boxes or choosing a larger package.'); return; }
-  alert('Thank you — we will be in touch within one business day to confirm your order. No payment is taken until we have spoken.');
+function showOrderSuccess() {
+  document.getElementById('orderForm').style.display = 'none';
+  document.getElementById('orderSuccess').style.display = 'block';
 }
 
 function toggleDetail(btn) {
