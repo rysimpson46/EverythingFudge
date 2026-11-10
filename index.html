@@ -48,19 +48,16 @@ nav.solid .nav-wordmark{font-size:.88rem}
 .page{display:none}.page.active{display:block}
 
 /* HERO */
-.hero{height:100vh;min-height:600px;display:grid;grid-template-columns:48% 52%;overflow:hidden;background:var(--cream)}
-.hero-left{display:flex;flex-direction:column;justify-content:center;padding:0 4.5rem 4rem;position:relative;z-index:2}
-.hero-right{position:relative;overflow:hidden}
-.hero-right img{width:100%;height:100%;object-fit:cover;object-position:center top}
-.hero-right::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(250,247,242,.12) 0%,transparent 30%);z-index:1}
-.hero-pre{font-family:var(--ui);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mocha);margin-bottom:1.4rem}
-.hero-h1{font-family:var(--display);font-size:clamp(2.8rem,5.5vw,5.2rem);font-weight:300;line-height:1.0;color:var(--ink);margin-bottom:1.6rem}
-.hero-h1 em{font-style:italic;color:var(--mocha)}
-.hero-line{width:2.5rem;height:1px;background:var(--bark);margin-bottom:1.4rem}
-.hero-mission{font-size:.82rem;font-weight:300;color:var(--espresso);max-width:360px;line-height:1.75;opacity:.78;margin-bottom:2rem;border-left:2px solid var(--bark);padding-left:1rem}
-    .hero-mission strong{font-weight:500;color:var(--mocha)}
-    .hero-sub{font-size:.87rem;font-weight:300;color:var(--espresso);max-width:340px;line-height:1.85;opacity:.82;margin-bottom:2.5rem}
-.hero-btns{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.hero{position:relative;height:100vh;min-height:600px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.hero-photo{overflow:hidden;position:relative}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.hero-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;pointer-events:none}
+.hero-card{background:rgba(250,247,242,0.93);padding:2.8rem 3rem 3rem;text-align:center;max-width:420px;width:90%;pointer-events:all;display:flex;flex-direction:column;align-items:center;gap:.9rem}
+.hero-card-logo{height:52px;width:auto;margin-bottom:.2rem}
+.hero-card-title{font-family:var(--display);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);line-height:1.1}
+.hero-card-sub{font-family:var(--display);font-size:clamp(.82rem,1.4vw,1rem);font-weight:400;color:var(--espresso);line-height:1.6;max-width:300px}
+.hero-card-sub strong{font-weight:600;color:var(--mocha)}
+.hero-btns{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;justify-content:center}
 .btn-fill{font-family:var(--ui);font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white);background:var(--espresso);padding:.85rem 2.2rem;cursor:pointer;border:none;transition:background .2s}
 .btn-fill:hover{background:var(--mocha)}
 .btn-text{font-family:var(--display);font-size:1rem;font-style:italic;color:var(--mocha);border:none;border-bottom:1px solid var(--bark);padding-bottom:1px;cursor:pointer;background:none;transition:color .2s}
@@ -240,14 +237,13 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
   .nav-logo{height:50px}
   nav.solid .nav-logo{height:40px}
   nav{padding:0 1.25rem}
-  .hero{grid-template-columns:1fr;height:auto;min-height:0;padding-top:var(--nav-h)}
-  .hero-right{display:none}
-  .hero-left{padding:3.5rem 1.5rem 4rem}
-  .hero-h1{font-size:2.6rem}
-  .hero-mission{font-size:.82rem;font-weight:300;color:var(--espresso);max-width:360px;line-height:1.75;opacity:.78;margin-bottom:2rem;border-left:2px solid var(--bark);padding-left:1rem}
-    .hero-mission strong{font-weight:500;color:var(--mocha)}
-    .hero-sub{max-width:100%}
-  .hero-btns{flex-direction:column;align-items:stretch}
+  .hero{grid-template-columns:1fr 1fr;height:60vw;min-height:320px;padding-top:0}
+  .hero-card{padding:1.6rem 1.4rem 1.8rem;gap:.6rem}
+  .hero-card-logo{height:36px}
+  .hero-card-title{font-size:1.1rem}
+  .hero-card-sub{font-size:.72rem}
+  .hero-btns{flex-direction:column;align-items:center}
+
   .btn-fill{text-align:center}
   .intro{grid-template-columns:1fr;gap:2rem;padding:4rem 1.5rem}
   .products{padding:3.5rem 1.5rem 4.5rem}
@@ -292,7 +288,7 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
   .product-detail{grid-template-columns:1fr}
   .pd-gallery{position:relative;top:0;height:55vw}
   .pd-panel{padding:2.5rem 2.5rem 4rem}
-  .hero-left,.intro,.products,.craft-txt,.gallery-hdr,.gallery-canvas,
+  .intro,.products,.craft-txt,.gallery-hdr,.gallery-canvas,
   .about-txt,.contact-form-col,.contact-info-col,footer{padding-left:2.5rem;padding-right:2.5rem}
   .product-grid{grid-template-columns:1fr 1fr}
   .pcard{border-right:var(--rule)!important}
@@ -375,18 +371,20 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
 <!-- HOME -->
 <div id="page-home" class="page active">
   <div class="hero">
-    <div class="hero-left">
-      <p class="hero-pre">Handmade &middot; Small-batch &middot; Since 2017</p>
-      <h1 class="hero-h1">Fudge the way<br><em>it ought to be.</em></h1>
-      <div class="hero-line"></div>
-      <p class="hero-sub">Real butter. Real cream. Cooked and cut by hand — the same way since the first batch in 2017.</p>
-      <p class="hero-mission">Everything Fudge was born from a simple belief &mdash; that the finest ingredients, made by hand, can do more than delight. They can feed a neighbor. <strong>100% of our profits go directly to local food pantries in Jefferson County.</strong></p>
-      <div class="hero-btns">
-        <button class="btn-fill" onclick="go('shop')">Place an order</button>
-        <button class="btn-text" onclick="go('about')">Our story</button>
+    <div class="hero-photo"><img id="heroClassic" alt="Heritage Classic fudge"/></div>
+    <div class="hero-photo"><img id="heroSwirl" alt="Madison River Swirl fudge"/></div>
+    <div class="hero-photo"><img id="heroSalt" alt="Alpine Sea Salt fudge"/></div>
+    <div class="hero-photo"><img id="heroPeanut" alt="Piedmont Peanut fudge"/></div>
+    <div class="hero-overlay">
+      <div class="hero-card">
+        <img class="hero-card-logo" id="heroLogo" alt="Everything Fudge"/>
+        <div class="hero-card-title">Everything Fudge.</div>
+        <p class="hero-card-sub"><strong>Small-Batch Perfection with Purpose.</strong><br>100% of our profits are donated directly to local food pantries.</p>
+        <div class="hero-btns">
+          <button class="btn-fill" onclick="go('shop')">Explore Our Collections</button>
+        </div>
       </div>
     </div>
-    <div class="hero-right"><img id="heroImg" alt="Everything Fudge"/></div>
   </div>
 
   <div class="marquee-wrap"><div class="marquee-track">
@@ -552,9 +550,18 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
               <input type="email" id="of-email" name="email" placeholder="jane@acme.com" required autocomplete="email"/>
             </div>
             <div class="order-field">
-              <label for="of-phone">Phone (optional)</label>
-              <input type="tel" id="of-phone" name="phone" placeholder="(208) 555-0100" autocomplete="tel"/>
+              <label for="of-phone">Phone number</label>
+              <input type="tel" id="of-phone" name="phone" placeholder="(208) 555-0100" required autocomplete="tel"/>
             </div>
+          </div>
+          <div class="order-field">
+            <label for="of-contact">Best way to reach you</label>
+            <select id="of-contact" name="preferred_contact" required>
+              <option value="" disabled selected>Select one&hellip;</option>
+              <option>Email</option>
+              <option>Phone call</option>
+              <option>Text message</option>
+            </select>
           </div>
           <div class="order-field">
             <label for="of-type">Type of buyer</label>
@@ -732,6 +739,11 @@ footer{background:var(--espresso);padding:2.5rem 4.5rem;display:flex;align-items
 // ── Image registry ──
 var IMG = {};
 function initImages() {
+  document.getElementById('heroLogo').src    = document.getElementById('_imgLogo').src;
+  document.getElementById('heroClassic').src = document.getElementById('_imgClassicSlab').src;
+  document.getElementById('heroSwirl').src   = document.getElementById('_imgSwirlSlab').src;
+  document.getElementById('heroSalt').src    = document.getElementById('_imgSaltSlab').src;
+  document.getElementById('heroPeanut').src  = document.getElementById('_imgPeanutSlab').src;
   IMG.logo           = document.getElementById('_imgLogo').src;
   IMG.box            = document.getElementById('_imgBox').src;
   IMG.pot            = document.getElementById('_imgPot').src;
@@ -754,8 +766,7 @@ function initImages() {
   document.getElementById('navLogo').src = IMG.logo;
   document.getElementById('ftLogo').src  = IMG.logo;
 
-  // Hero: gift-wrapped Heritage Classic bag — dramatic dark + bow
-  document.getElementById('heroImg').src = IMG.classicBag;
+  // Hero: removed (photos wired via initImages above)
 
   // Home product cards — use the most striking single shot per flavor
   document.getElementById('pcImg1').src = IMG.classicSlab;    // Heritage: stacked dark slabs
